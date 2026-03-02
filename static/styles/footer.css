@@ -1,0 +1,29 @@
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: 1.2rem 2rem;
+}
+
+.footer__content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.footer__links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.footer__links a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+}
+
+.footer__links a:hover { color: var(--color-primary); }
