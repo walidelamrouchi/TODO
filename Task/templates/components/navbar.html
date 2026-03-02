@@ -1,0 +1,25 @@
+{% load static %}
+ <link rel="stylesheet" href="{% static "styles/navbar.css" %}" />
+ <div class='navbar-container'>
+    <nav class='navbar'>
+        <div class="navbar__brand">
+            <a href="#">todo</a>
+        </div>
+        <div class="navbar__links">
+
+            <div class= 'btn_navbar'>
+                <a href="#">home</a>
+            </div>
+            <div class= 'btn_navbar '>
+                <a href="{% url "index" %}">task</a>
+            </div>
+            <div class= 'btn1'>
+                <a href="{% url "login" %}">login</a>
+            </div>
+            <div class= 'btn1'>
+                <a href="{% url "signup" %}">signup</a>
+            </div>
+        </div>
+    </nav>
+</div>
+

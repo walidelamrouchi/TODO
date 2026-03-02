@@ -1,0 +1,60 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    <link rel="stylesheet" href="{% static "styles/signup.css" %}" />
+  </head>
+  <body>
+    
+     <div class="form-box">
+    <form class="form" method='POST'>
+        {% csrf_token %}
+      <p class="title">Register</p>
+      
+      {% for message in messages %}
+      <p class="{{ message.tags }}">
+        {{ message }}
+      </p>
+        {% endfor %}
+      <div class="flex">
+        <label>
+          <input required="" placeholder="" type="text" class="input" name='FirstName' />
+          <span>Firstname</span>
+        </label>
+
+        <label>
+          <input required="" placeholder="" type="text" class="input" name='LastName' />
+          <span>Lastname</span>
+        </label>
+      </div>
+      <label>
+        <input required="" placeholder="" type="text" class="input"  name='Username'/>
+        <span>Username</span>
+      </label>
+
+      <label>
+        <input required="" placeholder="" type="email" class="input"  name='Email'/>
+        <span>Email</span>
+      </label>
+
+      <label>
+        <input required="" placeholder="" type="password" class="input" name='Password' />
+        <span>Password</span>
+      </label>
+      <label>
+        <input required="" placeholder="" type="password" class="input" name='ConfirmPassword' />
+        <span>Confirm password</span>
+      </label>
+      <button class="submit">Submit</button>
+      <p class="signin">Already have an acount ? <a href="{% url "login" %}">Signin</a></p>
+    </form>
+    </div>
+  </body>
+</html>
+{% endblock content %}
