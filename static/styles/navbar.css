@@ -1,4 +1,7 @@
 /* ===== NAVBAR ===== */
+*{
+    text-decoration: none;
+}
 :root {
   --color-primary-dark: #1d1d1d;
   --color-primary-white: #f5f5f5;
@@ -6,16 +9,16 @@
   --color-border-dark: #000000;
   --color-border-white: #e0e0e0;
   --color-text: #333333;
-  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow: 0 0  4px rgba(0, 0, 0, 0.1);
   --color-background: #f9f9f9;
 }
 .navbar {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 40px;
   padding:0 5rem ;
+  border-bottom: 1px solid var(--color-border-dark);
 
 }
 .navbar__brand a {
@@ -31,7 +34,7 @@
   gap: 1.5rem;
 }
 .btn_navbar {
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 1rem;
   background-color: transparent;
   color: #fff;
   border: none;
@@ -43,8 +46,18 @@
   background-color: var(--color-primary-white);
 }
 .navbar__links .btn_navbar a {
-  text-decoration: none;
+
   color: var(--color-text);
   font-size: 0.95rem;
 }
+.btn1{
+  padding: 0.4rem 1rem;
+  background-color: var(--color-border-dark);
 
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn1 a{
+  color: #fff;
+}
