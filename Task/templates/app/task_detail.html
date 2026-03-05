@@ -1,0 +1,11 @@
+{% load static %}
+<div class="task-detail-container">
+  <h2>{{ task.title }}</h2>
+  <p>{{ task.description }}</p>
+  <p>Date: {{ task.created_at }}</p>
+  <p>Date fin: {{ task.due_date }}</p>
+  <p>priority: {{ task.priority }}</p>
+
+  <a href="{% url 'TaskDelete' task.id %}">Delete Task</a>
+  <a href="{% url 'TaskUpdate' task.id %}">Update Task</a>
+</div>

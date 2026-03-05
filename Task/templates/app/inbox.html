@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>inbox</title>
+  </head>
+  <body>
+    {% for task in tasks %}
+    <div class="task">
+      <a href="{% url 'TaskDetail' task.id %}"> <!-- tasks/id/-->
+        <h2>{{ task.title }}</h2>
+        <p>{{ task.due_date }}</p>
+      </a>
+    </div>
+    {% endfor %}
+  </body>
+</html>
+<div class="task-card-container">
+  <div class="checkbox">
+    <input type="checkbox" name="" id="" />
+  </div>
+  <div class="task-card-content">
+    <h3></h3>
+    <p></p>
+  </div>
+</div>
+{% endblock content %}

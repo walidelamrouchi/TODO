@@ -11,13 +11,21 @@
                 <a href="#">home</a>
             </div>
             <div class= 'btn_navbar '>
-                <a href="{% url "index" %}">task</a>
+                <a href="{% url "AddTask" %}">task</a>
             </div>
             <div class= 'btn1'>
                 <a href="{% url "login" %}">login</a>
             </div>
             <div class= 'btn1'>
                 <a href="{% url "signup" %}">signup</a>
+            </div>
+            <div class= 'btn1'>
+                <form method="POST" action="{% url 'logout' %}"> <!-- logout action :use get that can be triggered by anyone -->
+                {% csrf_token %}
+                    <button type="submit" class="btn1">
+                        Logout 
+                    </button>
+                </form>
             </div>
         </div>
     </nav>

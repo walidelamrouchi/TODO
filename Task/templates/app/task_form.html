@@ -1,0 +1,14 @@
+{% block content %}
+<form action="" method="post">
+  {% csrf_token %} 
+  {{ form }} 
+  {% for message in messages %}
+  <p class="{{ message.tags }}">{{ message }}</p>
+  {% endfor %} 
+  {% if task %}
+  <button type="submit">Update Task</button>
+  {% else %}
+  <button type="submit">Create Task</button>
+  {% endif %}
+</form>
+{% endblock content %}
