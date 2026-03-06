@@ -1,11 +1,67 @@
 {% load static %}
-<div class="task-detail-container">
-  <h2>{{ task.title }}</h2>
-  <p>{{ task.description }}</p>
-  <p>Date: {{ task.created_at }}</p>
-  <p>Date fin: {{ task.due_date }}</p>
-  <p>priority: {{ task.priority }}</p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'styles/task_detail.css' %}" />
+    <title>task details</title>
+  </head>
+  <body>
+    <div class="details-container" id="modal-{{ task.id }}">
+      <div class="details_card">
+        <div class="details_header">
+          <a href="{% url 'inbox' %}" >Inbox</a>
+          <button
+            class="modal__close"
+            onclick="closeModal('modal-{{ task.id }}')"
+          >
+            delete
+          </button>
+        </div>
 
-  <a href="{% url 'TaskDelete' task.id %}">Delete Task</a>
-  <a href="{% url 'TaskUpdate' task.id %}">Update Task</a>
-</div>
+        <div class="details_body">
+          <div class="modal__left">
+            <!--{% include 'components/toggle_done.html' with task=task %}-->
+            <h2 class="details__title">{{ task.title }}</h2>
+            <p class="details__description">
+              {{ task.description|default:"No description." }}
+            </p>
+          </div>
+
+          <div class="modal__right">
+            <div class="modal__meta-item">
+              <span class="modal__meta-label">Status</span>
+              <span class="badge badge--{{ task.is_done }}">
+                {{ task.is_done }}
+              </span>
+            </div>
+            <div class="modal__meta-item">
+              <span class="modal__meta-label">Priority</span>
+              <span>{{ task.get_priority_display }}</span>
+            </div>
+            {% if task.due_date %}
+            <div class="modal__meta-item">
+              <span class="modal__meta-label">Date</span>
+              <span>{{ task.due_date|date:"M d, Y" }}</span>
+            </div>
+            {% endif %} {% if task.category %}
+            <div class="modal__meta-item">
+              <span class="modal__meta-label">Project</span>
+              <span>{{ task.category }}</span>
+            </div>
+            {% endif %}
+            <div class="modal__actions">
+              <a href="{% url 'TaskUpdate' task.id %}" class="btn btn--primary"
+                >Edit</a
+              >
+              <a href="{% url 'TaskDelete' task.id %}" class="btn btn--danger"
+                >Delete</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

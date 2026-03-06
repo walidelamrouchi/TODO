@@ -1,17 +1,8 @@
-{% extends "base.html" %} {% load static %} {% block content %}
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'styles/inbox.css' %}" />
-    <title>inbox</title>
-  </head>
-  <body>
-    <div class="list-tasks">
-      {% for task in tasks %}
-        <div class="task-item">
-        <!-- checkbox form — stops click from going to detail page -->
-        <form action="{% url 'TaskToggle' task.id %}" method="POST">
+
+<!--toggle checkbox for done
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/inbox.css' %}" />
+<form action="{% url 'TaskToggle' task.id %}" method="POST">
           {% csrf_token %}
           <div class="checkbox-container">
             <input
@@ -39,14 +30,5 @@
               <span class="checkbox-text">{{ task.title }}  at {{ task.due_date | date:"M d y" }} </span>
             </label>
         </div>
-        </form>
-        <a href="{% url "TaskDetail" task.id %}" class="item-details-link">View Details</a>
-      </div>
-    </div>
-    
-      {% endfor %}
-    </div>
-    
-  </body>
-</html>
-{% endblock content %}
+</form>
+-->
