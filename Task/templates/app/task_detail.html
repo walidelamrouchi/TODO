@@ -6,58 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'styles/task_detail.css' %}" />
     <title>task details</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=date_range,flag_2,progress_activity"
+    />
   </head>
   <body>
     <div class="details-container" id="modal-{{ task.id }}">
       <div class="details_card">
         <div class="details_header">
-          <a href="{% url 'inbox' %}" >Inbox</a>
-          <button
-            class="modal__close"
-            onclick="closeModal('modal-{{ task.id }}')"
-          >
-            delete
-          </button>
+          <a href="{% url 'inbox' %}">Inbox</a>
+    
+          <div class="details_actions">
+            <a href="{% url 'TaskUpdate' task.id %}" class="btn btn--primary"
+              >Edit</a
+            >
+            <a href="{% url 'TaskDelete' task.id %}" class="btn btn--danger"
+              >Delete</a
+            >
+          </div>
         </div>
 
         <div class="details_body">
-          <div class="modal__left">
-            <!--{% include 'components/toggle_done.html' with task=task %}-->
-            <h2 class="details__title">{{ task.title }}</h2>
+          <div class="details_left">
+            {% include 'components/toggle_done.html' with task=task %}
             <p class="details__description">
               {{ task.description|default:"No description." }}
             </p>
           </div>
 
-          <div class="modal__right">
-            <div class="modal__meta-item">
-              <span class="modal__meta-label">Status</span>
-              <span class="badge badge--{{ task.is_done }}">
-                {{ task.is_done }}
-              </span>
+          <div class="details_right">
+            <!--category project-->
+
+            <div class="details_meta-item">
+              <span class="details_meta-label">Project</span>
+              <div class="details_meta-value">
+                <p>{{ task.category | default:"No project" }}</p>
+              </div>
             </div>
-            <div class="modal__meta-item">
-              <span class="modal__meta-label">Priority</span>
-              <span>{{ task.get_priority_display }}</span>
+
+            <!--date-->
+            <div class="details_meta-item">
+              <span class="details_meta-label">Date</span>
+              {% if task.due_date %}
+              <div class="details_meta-value">
+                <span class="material-symbols-outlined"> date_range </span>
+                <p>
+                  {{ task.due_date|date:"M d, Y" |default:"No date specified" }}
+                </p>
+              </div>
+              {% endif %}
             </div>
-            {% if task.due_date %}
-            <div class="modal__meta-item">
-              <span class="modal__meta-label">Date</span>
-              <span>{{ task.due_date|date:"M d, Y" }}</span>
+            <!--priority-->
+
+            <div class="details_meta-item">
+              <span class="details_meta-label">Priority</span>
+              <div class="details_meta-value">
+                <span class="material-symbols-outlined"> flag_2 </span>
+                <p>{{ task.get_priority_display | default:"No priority" }}</p>
+              </div>
             </div>
-            {% endif %} {% if task.category %}
-            <div class="modal__meta-item">
-              <span class="modal__meta-label">Project</span>
-              <span>{{ task.category }}</span>
+            <!--status-->
+            <div class="details_meta-item">
+              <span class="details_meta-label">Status</span>
+              <div class="details_meta-value">
+                <span class="material-symbols-outlined">
+                  progress_activity
+                </span>
+                <p>{% if task.is_done %}Done{% else %}In Progress{% endif %}</p>
+              </div>
             </div>
-            {% endif %}
-            <div class="modal__actions">
-              <a href="{% url 'TaskUpdate' task.id %}" class="btn btn--primary"
-                >Edit</a
-              >
-              <a href="{% url 'TaskDelete' task.id %}" class="btn btn--danger"
-                >Delete</a
-              >
+            <!--created at-->
+            <div class="details_meta-item">
+              <span class="details_meta-label">Created</span>
+              <div class="details_meta-value">
+                
+                <p>{{ task.created_at|date:"M d, Y" }}</p>
+              </div>
+            </div>
+            <!--updated at-->
+            <div class="details_meta-item">
+              <span class="details_meta-label">Updated</span>
+              <div class="details_meta-value">
+               
+                <p>
+                  {{ task.updated_at|date:"M d, Y" |default:"No update yet" }}
+                </p>
+              </div>
             </div>
           </div>
         </div>

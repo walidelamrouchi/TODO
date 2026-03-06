@@ -23,7 +23,7 @@ class Task(models.Model):
     ]
     
     title = models.CharField(max_length=255)
-    desciption = models.TextField(blank=True)
+    description = models.TextField(blank=True)
     is_done = models.BooleanField(default=False)
     priority = models.IntegerField(choices=PRIORITY , default=1)
     created_at  = models.DateTimeField(auto_now_add=True)

@@ -1,7 +1,7 @@
 
-<!--toggle checkbox for done
+<!--toggle checkbox for done-->
 {% load static %}
-<link rel="stylesheet" href="{% static 'styles/inbox.css' %}" />
+<link rel="stylesheet" href="{% static 'styles/toggle_done.css' %}" />
 <form action="{% url 'TaskToggle' task.id %}" method="POST">
           {% csrf_token %}
           <div class="checkbox-container">
@@ -31,4 +31,3 @@
             </label>
         </div>
 </form>
--->

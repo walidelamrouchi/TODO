@@ -40,7 +40,7 @@ def Login(request):
         user = authenticate(request, username=Username, password = Password) # if existe return user else return None
         if user is not None:
             login(request , user) # login() : creates a session for the user and sets the appropriate cookies in the user's browser to maintain the logged-in state across requests.
-            return redirect('app/inbox.html')
+            return redirect('inbox')
         else:
             messages.error(request, 'Invalid username or password.')
             return redirect('login')
@@ -49,7 +49,7 @@ def Login(request):
 
 def Logout(request):
     logout(request)  # ← deletes the session from DB + clears the cookie
-    return redirect('index')
+    return redirect('inbox')
 
 @login_required(login_url='login') 
 def AddTask(request):
@@ -60,7 +60,7 @@ def AddTask(request):
             task.user = request.user   # add the user manually to the task instance before saving it to the database.
             task.save()
             messages.success(request, 'Task created successfully.')
-            return redirect('app/inbox.html')
+            return redirect('inbox')
     return render(request , 'app/task_form.html' , {'form': TaskForm()})
 
 @login_required(login_url='login') 
@@ -74,7 +74,7 @@ def task_delete(request , task_id):
     if request.method == 'POST':
      task.delete()
      messages.success(request, 'Task deleted successfully.')
-     return redirect('app/inbox.html')
+     return redirect('inbox')
     return render(request , 'app/task_confirm_delete.html' , {'task': task})
 
 @login_required(login_url='login') 
@@ -87,15 +87,15 @@ def task_update(request , task_id):
             task.user = request.user
             task.save() 
             messages.success(request, 'Task updated successfully.')
-            return redirect('app/inbox.html')
+            return redirect('inbox')
     return render(request , 'app/task_form.html' , {'task': task , 'form': TaskForm(instance=task)})
 @login_required(login_url='login')
 def task_toggle(request , task_id):
     task = Task.objects.get(id=task_id , user= request.user)
     task.is_done = not task.is_done
     task.save()
-    return redirect('app/inbox.html')
+    return redirect('inbox')
 
 def Tasks(request):
     res = Task.objects.filter(user=request.user) if request.user.is_authenticated else [] # If the user is not authenticated, it assigns an empty list to res.
-    return render(request , 'index.html' , {'tasks': res})
+    return render(request , 'app/inbox.html' , {'tasks': res})
