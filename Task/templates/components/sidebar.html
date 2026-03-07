@@ -1,0 +1,62 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/sidebar.css' %}" />
+
+<aside class="sidebar" id='sidebar'>
+  <!-- TOP: user info -->
+  <!-- add this button at the top of sidebar -->
+  <button class="sidebar__toggle">
+    ☰
+  </button>
+  <div class="sidebar__user">
+    <div class="sidebar__avatar">walid</div>
+    <span class="sidebar__username">elam</span>
+    <span class="sidebar__chevron">⌄</span>
+  </div>
+
+  <!-- ADD TASK -->
+  <a href="#" class="sidebar__add-task">
+    <span class="sidebar__add-icon">+</span>
+    <span>Add task</span>
+  </a>
+
+  <!-- SEARCH -->
+  <div class="sidebar__item sidebar__item--search">
+    <span class="sidebar__icon">🔍</span>
+    <span>Search</span>
+  </div>
+
+  <!-- NAV LINKS -->
+  <nav class="sidebar__nav">
+    <a href="#" class="sidebar__item" data-page="inbox">
+      <span class="sidebar__icon">📥</span>
+      <span>Inbox</span>
+
+      <span class="sidebar__count">inbox_count </span>
+    </a>
+
+    <a href="#" class="sidebar__item" data-page="today">
+      <span class="sidebar__icon">📅</span>
+      <span>Today</span>
+
+      <span class="sidebar__count sidebar__count--red">today_count </span>
+    </a>
+
+    <a href="#" class="sidebar__item" data-page="completed">
+      <span class="sidebar__icon">✅</span>
+      <span>Completed</span>
+    </a>
+  </nav>
+
+  <!-- BOTTOM LINKS -->
+  <div class="sidebar__bottom">
+    <div class="sidebar__item">
+      <span class="sidebar__icon">➕</span>
+      <span>Add a team</span>
+    </div>
+    <div class="sidebar__item">
+      <span class="sidebar__icon">❓</span>
+      <span>Help & resources</span>
+    </div>
+  </div>
+</aside>
+<script src="{% static "scripts/toggle-sidebar.js" %}" ></script>

@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base2.html" %} {% load static %} {% block content2 %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,11 +7,10 @@
     <title>inbox</title>
   </head>
   <body>
-    <div class="list-tasks">
-      {% for task in tasks %}
-        {% include "components/task_item.html" %}
-      {% endfor %}
+    <div class="task-items">
+      {% for task in tasks %} {% include "components/task_item.html" %}
+      {%endfor%}
     </div>
   </body>
 </html>
-{% endblock content %}
+{% endblock content2 %}

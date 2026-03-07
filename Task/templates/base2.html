@@ -1,0 +1,8 @@
+{% load static %}
+<link rel="stylesheet" href="{% static "styles/main.css" %}">
+<div class="app-layout ">
+  <div class="sidebar-box" id="sidebar">{% include "components/sidebar.html" %}</div>
+  <div class="app-loyout-content">
+    {% block content2 %} {% endblock content2 %}
+  </div>
+</div>

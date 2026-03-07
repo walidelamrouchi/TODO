@@ -94,7 +94,7 @@ def task_toggle(request , task_id):
     task = Task.objects.get(id=task_id , user= request.user)
     task.is_done = not task.is_done
     task.save()
-    return redirect('inbox')
+    return redirect(request.META.get('HTTP_REFERER' , 'inbox')) #browser request contains headers — metadata about the request. One of them is `HTTP_REFERER` — the URL of the page that sent the request.
 
 def Tasks(request):
     res = Task.objects.filter(user=request.user) if request.user.is_authenticated else [] # If the user is not authenticated, it assigns an empty list to res.
