@@ -1,5 +1,6 @@
 from django import forms
 from .models import Task
+from django.utils import timezone
 
 class TaskForm(forms.ModelForm):
     class Meta:
@@ -7,26 +8,28 @@ class TaskForm(forms.ModelForm):
         fields = ['title', 'description',  'priority', 'due_date', 'category']
         widgets = {
             'title': forms.TextInput(attrs={
-                'class': 'form__input',
-                'placeholder': 'Task title...'
+                'class': 'task-card__title-input',
+                'placeholder': 'Task name',
+                'autofocus': True
             }),
-            'description': forms.Textarea(attrs={
-                'class': 'form__input',
-                'placeholder': 'Description (optional)',
-                'rows': 3
+            'description': forms.TextInput(attrs={
+                'class': 'task-card__desc-input',
+                'placeholder': 'Description',
             }),
-            
             'priority': forms.Select(attrs={
-                'class': 'form__select'
+                'class': 'task-card__select',
+                'id': 'prioritySelect'
             }),
             'category': forms.Select(attrs={
-                'class': 'form__select'
+                'class': 'task-card__select',
+                'id': 'categorySelect'
             }),
             'due_date': forms.DateInput(attrs={
-                'class': 'form__input',
-                'type': 'date'        # renders as date picker in browser
-            }),
-            'is_done': forms.CheckboxInput(attrs={
-                'class': 'form__checkbox'         }),
+                'class': 'task-card__date',
+                'type': 'date',
+                'id': 'dueDateInput',
+                'onclick': 'this.showPicker()',
+                'min': timezone.now().date(),
+            }),    
         }
         

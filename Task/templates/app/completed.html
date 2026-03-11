@@ -1,0 +1,27 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'styles/inbox.css' %}"/>
+{% endblock %}
+
+{% block title %}Completed{% endblock %}
+
+{% block body_class %}page-completed{% endblock %}
+
+{% block content %}
+<div class="inbox-container">
+    <div class="inbox-header">
+        <h1 class="inbox-title">completed</h1>
+       
+    </div>
+
+    <div class="task-items">
+        {% for task in TaskCompleted %}
+            {% include 'components/task_item.html' %}
+        {% empty %}
+            <p class="inbox-empty">No tasks yet completed! 🎉</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

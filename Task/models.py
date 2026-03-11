@@ -4,9 +4,9 @@ from django.contrib.auth.models import User #class user permet de gere , cree et
 
 #class Category
 class Category(models.Model):
-    CATEGORY = [(1 ,'personal'),
-                (2,'agency'),
-                (3,'student'),
+    CATEGORY = [(1 ,'Personal'),
+                (2,'Work'),
+                (3,'Home Improvement'),
                 ]
     name = models.IntegerField(choices=CATEGORY)
     def __str__(self):
@@ -17,9 +17,10 @@ class Category(models.Model):
 # class task
 class Task(models.Model):
     PRIORITY = [
-                (1 , 'low'),
-                (2 , 'medium'),
-                (3 , 'high'),                                                   
+                (1 , 'Priority 1'),
+                (2 , 'Priority 2'),
+                (3 , 'Priority 3'),                                                   
+                (4 , 'Priority 4'),                                                   
     ]
     
     title = models.CharField(max_length=255)

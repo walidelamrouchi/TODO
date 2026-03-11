@@ -1,8 +1,37 @@
 {% load static %}
-<link rel="stylesheet" href="{% static "styles/main.css" %}">
-<div class="app-layout ">
-  <div class="sidebar-box" id="sidebar">{% include "components/sidebar.html" %}</div>
-  <div class="app-loyout-content">
-    {% block content2 %} {% endblock content2 %}
-  </div>
-</div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}TodoApp{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="{% static "styles/responsive.css" %}"> 
+    {% block extra_css %}{% endblock %}
+  </head>
+  <body class="{% block body_class %}{% endblock %}">
+    <div class="app-layout">
+      <!-- SIDEBAR -->
+      <aside class="app-layout__sidebar">
+        {% include "components/sidebar.html" %}
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="app-layout__content">
+        
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert--{{ message.tags }}">{{ message }}</div>
+        {% endfor %} {% endif %} 
+        
+            {% include "app/task_form.html" %}
+      
+        {% block content %}{% endblock %}
+      </main>
+      
+    </div>
+    <script src='{% static "scripts/main.js" %}'>  </script>
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

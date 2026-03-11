@@ -1,0 +1,305 @@
+<!--structure des pages-->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TaskFlow — Clarity, finally.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static "styles/main2.css" %}">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    TaskFlow
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#">Pricing</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="{% url "login" %}" class="btn-ghost">Log in</a>
+    <a href="{% url "signup" %}" class="btn-primary">Start for free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✦ Your productivity, simplified</div>
+  <h1>Clarity, <em>finally.</em></h1>
+  <p>The todo app that gets out of your way. Capture every task, stay focused, and actually get things done.</p>
+  <div class="hero-actions">
+    <a href="{% url "signup" %}" class="btn-primary-lg">Start for free →</a>
+    <span class="hero-note">No credit card required</span>
+  </div>
+
+  <div class="hero-preview">
+    <div class="app-window">
+      <div class="app-window-bar">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-yellow"></div>
+        <div class="dot dot-green"></div>
+      </div>
+      <div class="app-window-body">
+        <div class="app-sidebar-preview">
+          <div class="sidebar-item-preview active">
+            <div class="sidebar-dot"></div> Inbox
+            <span style="margin-left:auto;font-size:11px;">3</span>
+          </div>
+          <div class="sidebar-item-preview">
+            <div class="sidebar-dot"></div> Today
+            <span style="margin-left:auto;font-size:11px;color:#db4035;">5</span>
+          </div>
+          <div class="sidebar-item-preview">
+            <div class="sidebar-dot"></div> Completed
+          </div>
+        </div>
+        <div class="app-content-preview">
+          <h3>Inbox</h3>
+          <div class="task-row">
+            <div class="task-check"></div>
+            <span class="task-text">Design new landing page mockup</span>
+            <span class="task-tag tag-red">High</span>
+          </div>
+          <div class="task-row">
+            <div class="task-check"></div>
+            <span class="task-text">Review pull request from team</span>
+            <span class="task-tag tag-blue">Work</span>
+          </div>
+          <div class="task-row">
+            <div class="task-check done"></div>
+            <span class="task-text done-text">Send weekly report</span>
+            <span class="task-tag tag-green">Done</span>
+          </div>
+          <div class="task-row">
+            <div class="task-check"></div>
+            <span class="task-text">Plan weekend trip to mountains</span>
+            <span class="task-tag tag-orange">Personal</span>
+          </div>
+          <div class="task-row">
+            <div class="task-check"></div>
+            <span class="task-text">Buy groceries for the week</span>
+            <span class="task-tag tag-blue">Today</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<div class="social-proof">
+  <div class="proof-item">
+    <div class="proof-number">2M+</div>
+    <div class="proof-label">Tasks completed</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-number">50K+</div>
+    <div class="proof-label">Happy users</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-number">160+</div>
+    <div class="proof-label">Countries</div>
+  </div>
+  <div class="proof-item">
+    <div class="proof-number">4.9★</div>
+    <div class="proof-label">Average rating</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-label">Features</div>
+  <h2 class="section-title">Everything you need to stay on top</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon icon-red">📥</div>
+      <h3>Smart Inbox</h3>
+      <p>Capture every task instantly. Your inbox is always clean and organized, ready for what comes next.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-blue">📅</div>
+      <h3>Today View</h3>
+      <p>See only what matters today. No noise, no distraction — just your daily focus list.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-green">✅</div>
+      <h3>Track Progress</h3>
+      <p>Watch your completed tasks stack up. Built-in completion tracking keeps you motivated.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-orange">🚩</div>
+      <h3>Priority Levels</h3>
+      <p>Mark tasks by urgency. Never miss what's critical with color-coded priority flags.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-red">📁</div>
+      <h3>Categories</h3>
+      <p>Organize by Work, Personal, or Home. Keep every part of your life neatly separated.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon icon-blue">🔒</div>
+      <h3>Private & Secure</h3>
+      <p>Your tasks are yours alone. Each account is fully isolated — no one sees your data.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how">
+  <div class="how-inner">
+    <div>
+      <div class="section-label">How it works</div>
+      <h2 class="section-title">Simple by design</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Create your account</h4>
+            <p>Sign up in seconds. No lengthy setup, no tutorials — just start adding tasks.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Add your tasks</h4>
+            <p>Type a task, set a due date, pick a priority. It takes less than 10 seconds.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Stay focused</h4>
+            <p>Open Today view every morning. Check off tasks as you go. Feel the momentum.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="how-visual">
+      <div class="mini-task">
+        <div class="mini-check checked"></div>
+        <span class="mini-text striked">Morning standup call</span>
+        <span class="mini-badge">Work</span>
+      </div>
+      <div class="mini-task">
+        <div class="mini-check checked"></div>
+        <span class="mini-text striked">Review design mockups</span>
+        <span class="mini-badge">Work</span>
+      </div>
+      <div class="mini-task">
+        <div class="mini-check"></div>
+        <span class="mini-text">Fix login page bug</span>
+        <span class="mini-badge">High</span>
+      </div>
+      <div class="mini-task">
+        <div class="mini-check"></div>
+        <span class="mini-text">Write project proposal</span>
+        <span class="mini-badge">Today</span>
+      </div>
+      <div class="mini-task">
+        <div class="mini-check"></div>
+        <span class="mini-text">Call dentist for appointment</span>
+        <span class="mini-badge">Personal</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-label">Testimonials</div>
+  <h2 class="section-title" style="margin:0 auto 0;">Loved by people who get things done</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Finally a todo app that doesn't try to do too much. Clean, fast, and actually helps me focus on what matters."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background:#db4035;">S</div>
+        <div class="author-info">
+          <strong>Sarah M.</strong>
+          <span>Product Designer</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"I've tried dozens of productivity apps. TaskFlow is the only one I've stuck with for more than a week."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background:#1967d2;">A</div>
+        <div class="author-info">
+          <strong>Ahmed R.</strong>
+          <span>Software Engineer</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"The Today view is a game changer. I open it every morning and I know exactly what to do. No decision fatigue."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar" style="background:#137333;">L</div>
+        <div class="author-info">
+          <strong>Lisa K.</strong>
+          <span>Freelance Writer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Start getting things <em>done.</em></h2>
+  <p>Join thousands of people who trust TaskFlow every day.</p>
+  <a href="{% url "signup" %}" class="btn-primary-lg">Create free account →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="color:#fff;">
+        <div class="nav-logo-dot"></div>
+        TaskFlow
+      </a>
+      <p>The simple todo app that helps you capture tasks, stay focused, and actually get things done.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Changelog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Security</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 TaskFlow. All rights reserved.</p>
+    <p>Made with ♥ using Django</p>
+  </div>
+</footer>
+
+</body>
+</html>

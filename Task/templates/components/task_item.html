@@ -1,8 +1,6 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'styles/task_item.css' %}" />
 <div class="task-item">
         <!-- checkbox form — stops click from going to detail page -->
-        {% include 'components/toggle_done.html'  %}
+        {% include 'components/toggle_done.html' with task=task%}
         <a href="{% url "TaskDetail" task.id %}" class="item-details-link">View Details</a>
-
-  </div>
+</div>

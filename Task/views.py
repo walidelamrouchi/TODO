@@ -7,49 +7,15 @@ from django.contrib import messages
 from .forms import TaskForm
 from .models import Task
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 # Create your views here.
 
 
 
-def Signup(request):
-    if request.method == 'POST':
-        FirstName = request.POST.get('FirstName')
-        LastName = request.POST.get('LastName')
-        Email = request.POST.get('Email')
-        Password = request.POST.get('Password')
-        ConfirmPassword = request.POST.get('ConfirmPassword')
-        Username = request.POST.get('Username')
-        if User.objects.filter(username=Username).exists():
-            messages.error(request, 'Username already exists.')
-            return redirect('signup') # PRG: post->redirect->get pattern to prevent form resubmission on page refresh
-        if Password != ConfirmPassword:
-            messages.error(request, 'Passwords do not match.')
-            return redirect('signup')
-        user = User.objects.create_user(Username, Email, Password) # create_user() : creates a new user with the given username, email, and password. It also handles password hashing and other necessary setup for the user account.
-        user.first_name = FirstName
-        user.last_name = LastName
-        user.save()
-        return redirect('login')
-    return render(request , 'auth/signup.html')
-
-def Login(request):
-    if request.method =='POST':
-        Username = request.POST.get('Username')
-        Password = request.POST.get('Password')
-        user = authenticate(request, username=Username, password = Password) # if existe return user else return None
-        if user is not None:
-            login(request , user) # login() : creates a session for the user and sets the appropriate cookies in the user's browser to maintain the logged-in state across requests.
-            return redirect('inbox')
-        else:
-            messages.error(request, 'Invalid username or password.')
-            return redirect('login')
-    return render(request , 'auth/login.html')
-
-
 def Logout(request):
     logout(request)  # ← deletes the session from DB + clears the cookie
-    return redirect('inbox')
+    return redirect('landing')
 
 @login_required(login_url='login') 
 def AddTask(request):
@@ -85,10 +51,10 @@ def task_update(request , task_id):
         if form.is_valid():
             task = form.save(commit=False) # build a new obj 
             task.user = request.user
-            task.save() 
+            task.save()     
             messages.success(request, 'Task updated successfully.')
             return redirect('inbox')
-    return render(request , 'app/task_form.html' , {'task': task , 'form': TaskForm(instance=task)})
+    return render(request , 'app/task_update.html' , {'task': task , 'form': TaskForm(instance=task)})
 @login_required(login_url='login')
 def task_toggle(request , task_id):
     task = Task.objects.get(id=task_id , user= request.user)
@@ -99,3 +65,16 @@ def task_toggle(request , task_id):
 def Tasks(request):
     res = Task.objects.filter(user=request.user) if request.user.is_authenticated else [] # If the user is not authenticated, it assigns an empty list to res.
     return render(request , 'app/inbox.html' , {'tasks': res})
+
+def Today(request):
+    TaskToday = Task.objects.filter(user = request.user , is_done = False , due_date__date = timezone.now().date()) #only today task
+    return render(request, 'app/today.html', {'TaskToday' : TaskToday})
+def Completed(request):
+    TaskCompleted = Task.objects.filter(user = request.user , is_done=True)
+    return render(request , 'app/completed.html' ,{'TaskCompleted':TaskCompleted})
+
+def landing(request):
+    # if already logged in → skip landing → go to inbox
+    if request.user.is_authenticated:
+        return redirect('inbox')
+    return render(request, 'landing.html')

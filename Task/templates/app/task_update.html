@@ -1,11 +1,12 @@
+{% extends "base2.html" %}
 {% load static %} {% load task_filters %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'styles/task_form.css' %}" />
 {% endblock %}
 
-
+{% block content %}
 <div class="task-card-overlay" id='cardAddTask'>
   <div class="task-card">
-    <form method="POST" action=" {% url "AddTask" %}">
+    <form method="POST" action=" {% url "TaskUpdate" task.id %}">
       {% csrf_token %} {# ── TOP: title + description ── #}
       <div class="task-card__body">
         {{ add_task_form.title }} {{ add_task_form.title.errors }} {{add_task_form.description }}
@@ -137,7 +138,7 @@
         <div class="task-card__footer-actions">
           <a  class="task-card__cancel">Cancel</a>
           <button type="submit" class="task-card__submit">
-            {% if task %}Update task{% else %}Add task{% endif %}
+            Update task
           </button>
         </div>
       </div>
@@ -233,3 +234,4 @@
 }
 
 </script>
+{% endblock content %}

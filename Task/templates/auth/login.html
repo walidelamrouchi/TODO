@@ -1,45 +1,82 @@
 
-{% extends "base.html" %}
 {% load static %}
-{% block content %}
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>    
+    <link rel="stylesheet" href="{% static "styles/login.css" %}">
     <title>login</title>
-    <link rel="stylesheet" href="{% static "styles/signup.css" %}" />
-  </head>
-  <body>
-    
-     <div class="form-box">
-    <form class="form" method='post'>
-      {% csrf_token %}
-      <p class="title">Login</p>
-    
-      
-        {% for message in messages %}
-      <div class="{{ message.tags }}">
-        {{ message }}
-      </div>
-        {% endfor %}
-      
+</head>
+<body>
 
-      <label>
-        <input  placeholder="" type="text" class="input" name='Username'/>
-        <span>Username</span>
-      </label>
-
-      <label>
-        <input  placeholder="" type="password" class="input" name='Password'/>
-        <span>Password</span>
-      </label>
-     
-      </label>
-      <button class="submit">Submit</button>
-      <p class="signin">not have an acount ? <a href="{% url "login" %}">Signin</a></p>
-    </form>
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form method='POST' action="{% url "signup" %}" >
+                {% csrf_token %}
+                
+                    <h1>Create Account</h1>
+                    <span class="{{ message.tags }}">
+                    {% if messages %}
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %} 
+                    {% else %}
+                            use your email for registeration
+                    {% endif %}
+                    </span>
+                
+                
+                <input required="" placeholder="first name" type="text" name='FirstName' />
+                <input required="" placeholder="last name" type="text"  name='LastName' />
+                <input required="" placeholder="username" type="username"   name='Username'/>
+                <input required="" placeholder="email" type="email"   name='Email'/>
+                <input required="" placeholder="password" type="password"  name='Password' />
+                <input required="" placeholder="ConfirmPassword" type="password"  name='ConfirmPassword' />
+                <button class="submit">Sign Up</button>
+                
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form method='POST' action="{% url "login" %}">
+                {% csrf_token %}
+                
+                <h1>Sign In</h1>
+                <span class="{{ message.tags }}">
+                    {% if messages %}
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %} 
+                    {% else %}
+                            use your username password
+                    {% endif %}
+                    </span>
+                
+                <input type="username" placeholder="Username" name="Username">
+                <input type="password" placeholder="Password" name="Password">
+                <a href="#">Forget Your Password?</a>
+                <button type="submit" >Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Register with your personal details</p>
+                    <button class="hidden" id="register"><a href="#">Sign Up</a></button>
+                </div>
+            </div>
+        </div>
     </div>
-  </body>
+
+    <script src="{% static "scripts/login.js" %}"></script>
+</body>
+
 </html>
-{% endblock content %}
