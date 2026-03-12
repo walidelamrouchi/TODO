@@ -16,6 +16,8 @@ static/
 venv/
 env/
 .venv/
+# .gitignore
+.env
 
 
 # IDE
