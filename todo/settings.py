@@ -31,6 +31,7 @@ DEBUG = os.environ.get('DEBUG') == 'True'
 
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
+CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', 'http://localhost').split(',')
 
 # Application definition
 
