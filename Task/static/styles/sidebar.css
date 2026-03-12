@@ -1,0 +1,247 @@
+/* ============================================================
+   SIDEBAR.CSS — Sidebar component only
+   ============================================================ */
+
+.sidebar {
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width var(--t-mid), opacity var(--t-mid);
+  position: relative;
+}
+
+.sidebar--closed {
+  width: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ─── HEAD ─── */
+.sidebar__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 12px 8px 16px;
+  min-height: 48px;
+  flex-shrink: 0;
+}
+
+.title__head {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  font-style: italic;
+}
+
+.sidebar__toggle-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-3);
+  transition: background var(--t-fast), color var(--t-fast);
+  flex-shrink: 0;
+}
+
+.sidebar__toggle-btn:hover {
+  background: var(--border);
+  color: var(--ink);
+}
+
+.sidebar__toggle-btn svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* ─── FLOATING TOGGLE (when sidebar closed) ─── */
+.sidebar__float-btn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 200;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-3);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: background var(--t-fast), color var(--t-fast), opacity var(--t-fast);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar__float-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar__float-btn:hover {
+  background: var(--sidebar-bg);
+  color: var(--ink);
+}
+
+/* ─── ADD TASK BUTTON ─── */
+.sidebar__add-task {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  margin: 4px 8px 8px;
+  border-radius: var(--r-sm);
+  color: var(--ink-3);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--t-fast), color var(--t-fast);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.sidebar__add-task:hover {
+  background: var(--border);
+  color: var(--red);
+}
+
+.sidebar__add-task:hover .sidebar__icon {
+  color: var(--red);
+}
+
+/* ─── NAV ─── */
+.sidebar__nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px 8px;
+}
+
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--r-sm);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink-2);
+  transition: background var(--t-fast), color var(--t-fast);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-decoration: none;
+  margin-bottom: 2px;
+}
+
+.sidebar__item:hover {
+  background: var(--bg-2);
+  color: var(--ink);
+}
+
+.sidebar__item--active {
+  background: var(--sidebar-active-bg);
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* ─── ICON & LABEL ─── */
+.sidebar__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  color: var(--ink-3);
+}
+
+.sidebar__item--active .sidebar__icon,
+.sidebar__item:hover .sidebar__icon {
+  color: var(--ink);
+}
+
+.sidebar__label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ─── COUNT BADGES ─── */
+.sidebar__count {
+  font-size: 12px;
+  color: var(--ink-3);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.sidebar__count--red {
+  color: var(--red);
+}
+
+/* ─── BOTTOM ─── */
+.sidebar__bottom {
+  flex-shrink: 0;
+  padding: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.sidebar__user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--r-sm);
+  margin-top: 4px;
+}
+
+.sidebar__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ─── RESPONSIVE: mobile overlay ─── */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 300;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sidebar--closed {
+    transform: translateX(-100%);
+    opacity: 1;
+    width: var(--sidebar-w);
+  }
+
+  .app-layout__sidebar {
+    width: 0;
+  }
+
+  .app-layout__sidebar.sidebar-collapsed {
+    width: 0;
+  }
+
+  .sidebar__float-btn {
+    display: flex;
+  }
+}

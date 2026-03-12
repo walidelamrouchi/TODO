@@ -1,0 +1,113 @@
+/* ============================================================
+   INBOX.CSS — Inbox / Today / Completed pages
+   ============================================================ */
+
+.inbox-container {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ─── HEADER ─── */
+.inbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-top: 4px;
+}
+
+.inbox-title {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+/* ─── ADD TASK INLINE BUTTON ─── */
+.inbox-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+.inbox-add-btn:hover {
+  background: var(--bg-2);
+  color: var(--red);
+}
+
+/* ─── TASK LIST ─── */
+.task-items {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── TASK ITEM ─── */
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--t-fast);
+  position: relative;
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-item:hover {
+  background: var(--bg-2);
+  border-radius: var(--r-sm);
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
+/* ─── VIEW DETAILS LINK ─── */
+.item-details-link {
+  font-size: 12px;
+  color: var(--ink-4);
+  white-space: nowrap;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity var(--t-fast), color var(--t-fast);
+  padding: 4px 8px;
+  border-radius: var(--r-sm);
+}
+
+.task-item:hover .item-details-link {
+  opacity: 1;
+}
+
+.item-details-link:hover {
+  color: var(--ink-2);
+  background: var(--border);
+}
+
+/* ─── EMPTY STATE ─── */
+.inbox-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--ink-4);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .inbox-container {
+    padding: 0;
+  }
+}

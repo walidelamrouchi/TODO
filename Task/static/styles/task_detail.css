@@ -1,0 +1,285 @@
+/* ============================================================
+   TASK_DETAIL.CSS — Task detail page
+   ============================================================ */
+
+.details-container {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.details_card {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* ─── HEADER ─── */
+.details_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.details_header a {
+  font-size: 13px;
+  color: var(--ink-3);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--t-fast);
+}
+
+.details_header a:hover {
+  color: var(--ink);
+}
+
+.details_header a::before {
+  content: '←';
+  font-size: 14px;
+}
+
+.details_actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ─── EDIT BUTTON ─── */
+.edit-button {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background var(--t-fast), border-color var(--t-fast);
+}
+
+.edit-button:hover {
+  background: var(--border);
+  border-color: var(--border-2);
+}
+
+.edit-svgIcon {
+  width: 14px;
+  height: 14px;
+  fill: var(--ink-3);
+}
+
+/* ─── DELETE BUTTON ─── */
+.button-delete {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background var(--t-fast), border-color var(--t-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.button-delete:hover {
+  background: var(--red-light);
+  border-color: var(--red-mid);
+}
+
+.svgIcon {
+  width: 14px;
+  position: absolute;
+  transition: transform 0.3s ease;
+}
+
+.bin-top {
+  top: 6px;
+  fill: var(--ink-3);
+}
+
+.bin-bottom {
+  bottom: 6px;
+  fill: var(--ink-3);
+}
+
+.button-delete:hover .bin-top {
+  transform: translateY(-2px) rotate(-5deg);
+  fill: var(--red);
+}
+
+.button-delete:hover .bin-bottom {
+  fill: var(--red);
+}
+
+/* ─── BODY ─── */
+.details_body {
+  display: flex;
+  gap: 0;
+}
+
+.details_left {
+  flex: 1;
+  padding: 24px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.details__description {
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.6;
+  padding-top: 2px;
+}
+
+/* ─── META PANEL ─── */
+.details_right {
+  width: 220px;
+  flex-shrink: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.details_meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.details_meta-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-4);
+}
+
+.details_meta-value {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.details_meta-value .material-symbols-outlined {
+  font-size: 16px;
+  color: var(--ink-3);
+}
+
+/* ─── CONFIRM DELETE MODAL ─── */
+.task_confirm {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-mid);
+}
+
+.task_confirm.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.confirm-box {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xl);
+  padding: 24px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.head-confirm {
+  margin-bottom: 20px;
+}
+
+.title-confirm {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.title-confirm-info {
+  font-size: 13px;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+.title-confirm-info span {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.btn-action {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.cancel-btn {
+  padding: 7px 16px;
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: background var(--t-fast);
+  font-family: var(--font-body);
+}
+
+.cancel-btn:hover {
+  background: var(--border);
+  color: var(--ink);
+}
+
+.detelet-bnt {
+  padding: 7px 16px;
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--red);
+  border: none;
+  cursor: pointer;
+  transition: background var(--t-fast);
+  font-family: var(--font-body);
+}
+
+.detelet-bnt:hover {
+  background: var(--red-dark);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .details_body {
+    flex-direction: column;
+  }
+
+  .details_left {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .details_right {
+    width: 100%;
+  }
+}

@@ -1,0 +1,107 @@
+/* ============================================================
+   TOGGLE_DONE.CSS — Task checkbox component
+   ============================================================ */
+
+/* Remove default form/link spacing */
+.checkbox-container form,
+.task-item form {
+  display: contents;
+}
+
+/* ─── CONTAINER ─── */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ─── HIDE NATIVE CHECKBOX ─── */
+.task-checkbox {
+  display: none;
+}
+
+/* ─── LABEL ─── */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  flex: 1;
+  min-width: 0;
+  user-select: none;
+}
+
+/* ─── CUSTOM CHECKBOX ─── */
+.checkbox-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--border-2);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: border-color var(--t-fast), background var(--t-fast);
+  background: var(--white);
+}
+
+.checkbox-label:hover .checkbox-box {
+  border-color: var(--red);
+}
+
+/* checked state */
+.task-checkbox:checked + .checkbox-label .checkbox-box {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+/* fill animation */
+.checkbox-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--red);
+  transform: scale(0);
+  transition: transform 0.2s ease;
+}
+
+.task-checkbox:checked + .checkbox-label .checkbox-fill {
+  transform: scale(1);
+}
+
+/* checkmark */
+.check-icon {
+  width: 11px;
+  height: 11px;
+  fill: white;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.task-checkbox:checked + .checkbox-label .check-icon {
+  opacity: 1;
+}
+
+/* hide fill/ripple divs — we use CSS only */
+.checkbox-fill { display: none; }
+.success-ripple { display: none; }
+
+/* ─── TEXT ─── */
+.checkbox-text {
+  font-size: 14px;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color var(--t-fast);
+  line-height: 1.4;
+}
+
+.task-checkbox:checked + .checkbox-label .checkbox-text {
+  color: var(--ink-4);
+  text-decoration: line-through;
+}

@@ -1,0 +1,42 @@
+/* ============================================================
+   RESPONSIVE.CSS — Mobile overrides only
+   All base responsive rules are in component CSS files.
+   This file handles global layout shifts for small screens.
+   ============================================================ */
+
+@media (max-width: 768px) {
+  /* Push content right to make room for float toggle btn */
+  .app-layout__content {
+    padding: 56px 20px 24px;
+  }
+
+  /* Sidebar becomes overlay — handled in sidebar.css */
+
+  /* Task detail: stack panels */
+  .details_body {
+    flex-direction: column;
+  }
+
+  .details_right {
+    width: 100%;
+    border-top: 1px solid var(--border);
+  }
+
+  .details_left {
+    border-right: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-layout__content {
+    padding: 52px 16px 20px;
+  }
+
+  .inbox-title {
+    font-size: 18px;
+  }
+
+  .task-card {
+    border-radius: 12px;
+  }
+}

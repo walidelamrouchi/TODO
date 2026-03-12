@@ -1,0 +1,261 @@
+/* ============================================================
+   LOGIN.CSS — Auth pages (login / signup)
+   Todoist-inspired split panel
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+
+:root {
+  --red:       #db4035;
+  --red-dark:  #b8332a;
+  --white:     #ffffff;
+  --bg:        #fafaf8;
+  --border:    #e8e8e5;
+  --ink:       #202020;
+  --ink-2:     #444444;
+  --ink-3:     #777777;
+  --ink-4:     #aaaaaa;
+  --font-body: 'DM Sans', sans-serif;
+  --font-display: 'DM Serif Display', serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── CONTAINER ─── */
+.container {
+  display: flex;
+  align-items: stretch;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── FORM PANEL ─── */
+.form-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 40px;
+  background: var(--white);
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.4s ease;
+}
+
+.form-container form {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-container h1 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.form-container span {
+  font-size: 13px;
+  color: var(--ink-3);
+  display: block;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.form-container span.error {
+  color: var(--red);
+}
+
+/* ─── INPUTS ─── */
+.form-container input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  font-family: var(--font-body);
+}
+
+.form-container input:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(219, 64, 53, 0.12);
+  background: var(--white);
+}
+
+.form-container input::placeholder {
+  color: var(--ink-4);
+}
+
+.form-container a {
+  font-size: 13px;
+  color: var(--ink-3);
+  text-align: right;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.form-container a:hover {
+  color: var(--red);
+}
+
+/* ─── SUBMIT BUTTON ─── */
+.form-container .submit,
+.form-container button[type="submit"] {
+  width: 100%;
+  padding: 11px;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: background 0.15s ease, transform 0.1s ease;
+  margin-top: 4px;
+}
+
+.form-container .submit:hover,
+.form-container button[type="submit"]:hover {
+  background: var(--red-dark);
+  transform: translateY(-1px);
+}
+
+/* ─── SIGN IN / SIGN UP panels ─── */
+.sign-in {
+  left: 0;
+  z-index: 2;
+}
+
+.sign-up {
+  left: 0;
+  z-index: 1;
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.container.active .sign-in {
+  transform: translateX(-100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+.container.active .sign-up {
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 2;
+}
+
+/* ─── TOGGLE PANEL ─── */
+.toggle-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40%;
+  height: 100%;
+  z-index: 10;
+  overflow: hidden;
+  border-radius: 0 0 0 80px;
+  transition: border-radius 0.6s ease;
+}
+
+.container.active .toggle-container {
+  border-radius: 80px 0 0 0;
+}
+
+.toggle {
+  width: 200%;
+  height: 100%;
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+  background: linear-gradient(135deg, var(--red) 0%, #c0392b 100%);
+}
+
+.container.active .toggle {
+  transform: translateX(-50%);
+}
+
+.toggle-panel {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 32px;
+  gap: 12px;
+  color: #fff;
+}
+
+.toggle-panel h1 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-style: italic;
+  color: #fff;
+}
+
+.toggle-panel p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+}
+
+.toggle-panel .hidden {
+  display: inline-flex !important;
+  padding: 9px 24px;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  font-family: var(--font-body);
+  margin-top: 8px;
+}
+
+.toggle-panel .hidden:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.9);
+}
+
+.toggle-panel .hidden a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .toggle-container { display: none; }
+
+  .form-container {
+    position: relative;
+    inset: auto;
+    transform: none !important;
+    opacity: 1 !important;
+    flex-direction: column;
+  }
+
+  .sign-up { display: none; }
+
+  .container {
+    flex-direction: column;
+  }
+}

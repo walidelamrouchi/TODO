@@ -1,0 +1,252 @@
+/* ============================================================
+   TASK_FORM.CSS — Add task card & overlay
+   ============================================================ */
+
+/* ─── OVERLAY ─── */
+.task-card-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-mid);
+}
+
+.task-card-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ─── CARD ─── */
+.task-card {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xl);
+  width: 100%;
+  max-width: 560px;
+  overflow: hidden;
+  transform: translateY(12px) scale(0.98);
+  transition: transform var(--t-mid);
+}
+
+.task-card-overlay.open .task-card {
+  transform: translateY(0) scale(1);
+}
+
+/* ─── BODY: title + description ─── */
+.task-card__body {
+  padding: 16px 20px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.task-card__title-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  background: transparent;
+  padding: 4px 0;
+  font-family: var(--font-body);
+}
+
+.task-card__title-input::placeholder {
+  color: var(--ink-4);
+  font-weight: 400;
+}
+
+.task-card__desc-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  color: var(--ink-2);
+  background: transparent;
+  padding: 2px 0;
+  font-family: var(--font-body);
+}
+
+.task-card__desc-input::placeholder {
+  color: var(--ink-4);
+}
+
+/* ─── ACTIONS ROW ─── */
+.task-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+/* ─── SHARED BUTTON ─── */
+.task-card__btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: var(--r-sm);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-3);
+  border: 1px solid var(--border);
+  background: var(--white);
+  cursor: pointer;
+  transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
+  white-space: nowrap;
+}
+
+.task-card__btn:hover {
+  background: var(--bg-2);
+  border-color: var(--border-2);
+  color: var(--ink-2);
+}
+
+/* ─── DATE BUTTON ─── */
+.task-card__btn--date {
+  cursor: pointer;
+}
+
+.task-card__date {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+/* ─── DROPDOWN ─── */
+.task-card__dropdown {
+  position: relative;
+}
+
+.dropdown__trigger {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+/* hide native select */
+.task-card__select {
+  display: none;
+}
+
+.dropdown__menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-md);
+  min-width: 160px;
+  z-index: 500;
+  overflow: hidden;
+  display: none;
+}
+
+.dropdown__menu--open {
+  display: block;
+}
+
+.dropdown__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background var(--t-fast);
+}
+
+.dropdown__item:hover {
+  background: var(--bg-2);
+}
+
+.dropdown__item--selected {
+  background: var(--bg-2);
+  font-weight: 500;
+}
+
+/* ─── FOOTER ─── */
+.task-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.task-card__footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.task-card__cancel {
+  padding: 7px 14px;
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: background var(--t-fast);
+}
+
+.task-card__cancel:hover {
+  background: var(--border);
+  color: var(--ink);
+}
+
+.task-card__submit {
+  padding: 7px 16px;
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--red);
+  border: none;
+  cursor: pointer;
+  transition: background var(--t-fast), opacity var(--t-fast);
+}
+
+.task-card__submit:hover {
+  background: var(--red-dark);
+}
+
+.task-card__submit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ─── VALIDATION ERRORS ─── */
+.task-card__errors {
+  font-size: 12px;
+  color: var(--red);
+  padding: 0 4px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 600px) {
+  .task-card {
+    max-width: 100%;
+    border-radius: var(--r-md);
+  }
+
+  .task-card__actions {
+    gap: 6px;
+  }
+}
