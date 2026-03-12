@@ -1,237 +1,88 @@
 {% extends "base2.html" %}
-{% load static %} {% load task_filters %} {% block extra_css %}
-<link rel="stylesheet" href="{% static 'styles/task_form.css' %}" />
+{% load static %}{% load task_filters %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'styles/task_form.css' %}"/>
 {% endblock %}
 
+{% block title %}Edit task{% endblock %}
+{% block body_class %}page-update-task{% endblock %}
+
 {% block content %}
-<div class="task-card-overlay" id='cardAddTask'>
-  <div class="task-card">
-    <form method="POST" action=" {% url "TaskUpdate" task.id %}">
-      {% csrf_token %} {# ── TOP: title + description ── #}
+{# Full-page edit card — same UI as add task but pre-filled #}
+<div style="display:flex; align-items:center; justify-content:center; min-height: calc(100vh - 80px);">
+  <div class="task-card" style="width:100%; max-width:560px;">
+    <form method="POST" action="{% url 'TaskUpdate' task.id %}">
+      {% csrf_token %}
+
       <div class="task-card__body">
-        {{ add_task_form.title }} {{ add_task_form.title.errors }} {{add_task_form.description }}
+        {{ form.title }}
+        {{ form.description }}
       </div>
 
-      {# ── MIDDLE: action buttons row ── #}
       <div class="task-card__actions">
-        {# due date button #}
+
+        {# due date #}
         <label class="task-card__btn task-card__btn--date" for="dueDateInput">
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <rect x="3" y="4" width="18" height="18" rx="2" />
-            <line x1="3" y1="10" x2="21" y2="10" />
-            <line x1="8" y1="2" x2="8" y2="6" />
-            <line x1="16" y1="2" x2="16" y2="6" />
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
           </svg>
-          <span id="dueDateLabel">
-            {% if add_task_form.due_date.value %} {{ add_task_form.due_date.value }} {% else %}
-            Due date {% endif %}
-          </span>
-          {{ add_task_form.due_date }}
+          <span id="dueDateLabel">{% if task.due_date %}{{ task.due_date|date:"M d" }}{% else %}Due date{% endif %}</span>
+          {{ form.due_date }}
         </label>
 
-        {# priority button #}
+        {# priority #}
         <div class="task-card__btn task-card__dropdown" id="priorityDropdown">
-          {{add_task_form.priority }}
-          <div
-            class="dropdown__trigger"
-            onclick="toggleDropdown('priorityMenu')"
-          >
+          {{ form.priority }}
+          <div class="dropdown__trigger" onclick="toggleDropdown('priorityMenu')">
             <span class="dropdown__icon" id="priorityIcon">
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="#666"
-                stroke="none"
-              >
-                <path
-                  d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"
-                />
-                <line
-                  x1="4"
-                  y1="22"
-                  x2="4"
-                  y2="15"
-                  stroke="#666"
-                  stroke-width="2"
-                />
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#999" stroke="none">
+                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                <line x1="4" y1="22" x2="4" y2="15" stroke="#999" stroke-width="2"/>
               </svg>
             </span>
-            <span id="priorityLabel">Priority</span>
+            <span id="priorityLabel">{{ task.get_priority_display }}</span>
           </div>
-          {# custom options list #}
-           <ul class="dropdown__menu" id="priorityMenu">
-    <li class="dropdown__item"
-        onclick="selectPriority(1, 'Priority 1', '#d1453b')">
-        {{ 1|priority_icon }}
-        Priority 1
-    </li>
-    <li class="dropdown__item"
-        onclick="selectPriority(2, 'Priority 2', '#eb8909')">
-        {{ 2|priority_icon }}
-        Priority 2
-    </li>
-    <li class="dropdown__item"
-        onclick="selectPriority(3, 'Priority 3', '#246fe0')">
-        {{ 3|priority_icon }}
-        Priority 3
-    </li>
-    <li class="dropdown__item"
-        onclick="selectPriority(4, 'Priority 4', '#666')">
-        {{ 4|priority_icon }}
-        Priority 4
-    </li>
-</ul>
-</div>
-        {# category button #}
-        <div class="task-card__btn task-card__dropdown" id="categoryDropdown">
-           {{ add_task_form.category }} 
-          <div
-            class="dropdown__trigger"
-            onclick="toggleDropdown('categoryMenu')"
-          >
-            <span id="categoryIcon">
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#555"
-                stroke-width="2"
-              >
-                <rect x="2" y="7" width="20" height="14" rx="2" />
-                <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />
-              </svg>
-            </span>
-            <span id="categoryLabel">Category</span>
-          </div>
-
-          <ul class="dropdown__menu" id="categoryMenu">
-            <li class="dropdown__item" onclick="selectCategory(1, 'Work')">
-              {{ 1|category_icon }}
-              Work
-            </li>
-            <li class="dropdown__item" onclick="selectCategory(2, 'Personal')">
-              {{ 2|category_icon }}
-              Personal
-            </li>
-            <li
-              class="dropdown__item"
-              onclick="selectCategory(3, 'Home Improvement')"
-            >
-              {{ 3|category_icon }}
-              Home Improvement
-            </li>
+          <ul class="dropdown__menu" id="priorityMenu">
+            <li class="dropdown__item" onclick="selectPriority(1,'Priority 1','#d1453b')">{{ 1|priority_icon }} Priority 1</li>
+            <li class="dropdown__item" onclick="selectPriority(2,'Priority 2','#eb8909')">{{ 2|priority_icon }} Priority 2</li>
+            <li class="dropdown__item" onclick="selectPriority(3,'Priority 3','#246fe0')">{{ 3|priority_icon }} Priority 3</li>
+            <li class="dropdown__item" onclick="selectPriority(4,'Priority 4','#999')">{{ 4|priority_icon }} Priority 4</li>
           </ul>
         </div>
+
+        {# category #}
+        <div class="task-card__btn task-card__dropdown" id="categoryDropdown">
+          {{ form.category }}
+          <div class="dropdown__trigger" onclick="toggleDropdown('categoryMenu')">
+            <span id="categoryIcon">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
+              </svg>
+            </span>
+            <span id="categoryLabel">{% if task.category %}{{ task.category }}{% else %}Category{% endif %}</span>
+          </div>
+          <ul class="dropdown__menu" id="categoryMenu">
+            <li class="dropdown__item" onclick="selectCategory(1,'Work')">{{ 1|category_icon }} Work</li>
+            <li class="dropdown__item" onclick="selectCategory(2,'Personal')">{{ 2|category_icon }} Personal</li>
+            <li class="dropdown__item" onclick="selectCategory(3,'Home Improvement')">{{ 3|category_icon }} Home Improvement</li>
+          </ul>
+        </div>
+
       </div>
 
-      {# ── FOOTER: inbox label + cancel/submit ── #}
       <div class="task-card__footer">
         <div class="task-card__footer-actions">
-          <a  class="task-card__cancel">Cancel</a>
-          <button type="submit" class="task-card__submit">
-            Update task
-          </button>
+          <a href="{% url 'TaskDetail' task.id %}" class="task-card__cancel">Cancel</a>
+          <button type="submit" class="task-card__submit">Update task</button>
         </div>
       </div>
+
     </form>
   </div>
 </div>
-<script>
-  // update due date button label when date selected
-  document.addEventListener("DOMContentLoaded", function () {
-    const dateInput = document.getElementById("dueDateInput");
-    const dateLabel = document.getElementById("dueDateLabel");
-    const submitBtn = document.querySelector(".task-card__submit");
-    const titleInput = document.querySelector(".task-card__title-input");
-
-    // disable submit if title empty
-    function checkTitle() {
-      submitBtn.disabled = titleInput.value.trim() === "";
-    }
-
-    titleInput.addEventListener("input", checkTitle);
-    checkTitle(); // run on load
-
-    // update date label
-    if (dateInput) {
-      dateInput.addEventListener("change", function () {
-        if (this.value) {
-          const date = new Date(this.value);
-          const options = { month: "short", day: "numeric" };
-          dateLabel.textContent = date.toLocaleDateString("en-US", options);
-        } else {
-          dateLabel.textContent = "Due date";
-        }
-      });
-    }
-  });
-  function toggleDropdown(menuId) {
-    // close all other dropdowns first
-    document.querySelectorAll(".dropdown__menu").forEach((menu) => {
-      if (menu.id !== menuId) {
-        menu.classList.remove("dropdown__menu--open");
-      }
-    });
-    // toggle this one
-    document.getElementById(menuId).classList.toggle("dropdown__menu--open");
-  }
-
-  function selectPriority(value, label, color) {
-    // update hidden select value → submits with form
-    document.getElementById("prioritySelect").value = value;
-
-    // update button label + color
-    document.getElementById("priorityLabel").textContent = label;
-    document.getElementById("priorityLabel").style.color = color;
-
-    // update icon color
-    const icon = document.getElementById("priorityIcon");
-    icon.querySelectorAll("path, line").forEach((el) => {
-      el.setAttribute("fill", color);
-      el.setAttribute("stroke", color);
-    });
-
-
-    // close dropdown
-    document
-      .getElementById("priorityMenu")
-      .classList.remove("dropdown__menu--open");
-  }
-
-  // close dropdown when clicking outside
-  document.addEventListener("click", function (e) {
-    if (!e.target.closest(".task-card__dropdown")) {
-      document.querySelectorAll(".dropdown__menu").forEach((menu) => {
-        menu.classList.remove("dropdown__menu--open");
-      });
-    }
-  });
-  function selectCategory(value, label) {
-    // update hidden select
-    document.getElementById('categorySelect').value = value
-
-    // update button label
-    document.getElementById('categoryLabel').textContent = label
-    document.getElementById('categoryLabel').style.color = '#202020'
-
-    // mark selected
-    document.querySelectorAll('#categoryMenu .dropdown__item').forEach(item => {
-        item.classList.remove('dropdown__item--selected')
-    })
-    event.currentTarget.classList.add('dropdown__item--selected')
-
-    // close
-    document.getElementById('categoryMenu').classList.remove('dropdown__menu--open')
-}
-
-</script>
-{% endblock content %}
+{% endblock %}

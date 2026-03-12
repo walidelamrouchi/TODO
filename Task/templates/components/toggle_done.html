@@ -1,33 +1,23 @@
-
-<!--toggle checkbox for done-->
 {% load static %}
-<link rel="stylesheet" href="{% static 'styles/toggle_done.css' %}" />
+<link rel="stylesheet" href="{% static 'styles/toggle_done.css' %}"/>
+
 <form action="{% url 'TaskToggle' task.id %}" method="POST">
-          {% csrf_token %}
-          <div class="checkbox-container">
-            <input
-                type="checkbox"
-                id="task-{{ task.id }}"
-                class="task-checkbox"
-                onchange="this.form.submit()"
-                {% if task.is_done %}
-                checked
-                {%endif %}
-             
-            />
-            <label for="task-{{ task.id }}" class="checkbox-label">
-              <div class="checkbox-box">
-                <div class="checkbox-fill"></div>
-                <div class="checkmark">
-                  <svg viewBox="0 0 24 24" class="check-icon">
-                    <path
-                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"
-                    ></path>
-                  </svg>
-                </div>
-                <div class="success-ripple"></div>
-              </div>
-              <span class="checkbox-text">{{ task.title }}  at {{ task.due_date | date:"M d y" }} </span>
-            </label>
-        </div>
+  {% csrf_token %}
+  <div class="checkbox-container">
+    <input
+      type="checkbox"
+      id="task-{{ task.id }}"
+      class="task-checkbox"
+      onchange="this.form.submit()"
+      {% if task.is_done %}checked{% endif %}
+    />
+    <label for="task-{{ task.id }}" class="checkbox-label">
+      <div class="checkbox-box">
+        <svg viewBox="0 0 24 24" class="check-icon">
+          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+        </svg>
+      </div>
+      <span class="checkbox-text">{{ task.title }}</span>
+    </label>
+  </div>
 </form>

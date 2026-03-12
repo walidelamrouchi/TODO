@@ -1,37 +1,55 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}TodoApp{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="{% static "styles/responsive.css" %}"> 
-    {% block extra_css %}{% endblock %}
-  </head>
-  <body class="{% block body_class %}{% endblock %}">
-    <div class="app-layout">
-      <!-- SIDEBAR -->
-      <aside class="app-layout__sidebar">
-        {% include "components/sidebar.html" %}
-      </aside>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}TaskFlow{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'styles/main.css' %}"/>
+  <link rel="stylesheet" href="{% static 'styles/responsive.css' %}"/>
+  {% block extra_css %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
 
-      <!-- MAIN CONTENT -->
-      <main class="app-layout__content">
-        
-        {% if messages %} {% for message in messages %}
-        <div class="alert alert--{{ message.tags }}">{{ message }}</div>
-        {% endfor %} {% endif %} 
-        
-            {% include "app/task_form.html" %}
-      
-        {% block content %}{% endblock %}
-      </main>
-      
-    </div>
-    <script src='{% static "scripts/main.js" %}'>  </script>
-    {% block extra_js %}{% endblock %}
-  </body>
+  {# floating toggle btn — only visible when sidebar is closed #}
+  <button class="sidebar__float-btn" onclick="toggleSidebar()" title="Open sidebar">
+    <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+      <path d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3zm5-1v12h9a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H5zM4 2H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h2V2z"/>
+    </svg>
+  </button>
+
+  {# title — shows when sidebar is closed #}
+  <div class="title__head title__head-hidden">TaskFlow</div>
+
+  <div class="app-layout">
+
+    {# ── SIDEBAR ── #}
+    <aside class="app-layout__sidebar">
+      {% include "components/sidebar.html" %}
+    </aside>
+
+    {# ── MAIN CONTENT ── #}
+    <main class="app-layout__content">
+
+      {# flash messages #}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert--{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+
+      {% block content %}{% endblock %}
+
+    </main>
+
+  </div>
+
+  {# ── ADD TASK CARD (once, available everywhere) ── #}
+  {% include "app/task_form.html" %}
+
+  <script src="{% static 'scripts/main.js' %}"></script>
+  <script src="{% static 'scripts/task_form.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+
+</body>
 </html>

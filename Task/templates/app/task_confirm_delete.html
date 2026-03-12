@@ -1,18 +1,17 @@
-
 {% load static %}
-<link rel="stylesheet" href="{% static "styles/confirm_delete.css" %}">
-<form method="post" action='{% url "TaskDelete" task.id %}' >
+
+<form method="POST" action="{% url 'TaskDelete' task.id %}">
   {% csrf_token %}
   <div class="confirm-box">
-  <div class="head-confirm">
-  <h3 class='title-confirm'>Delete task?</h3>
-  <p class='title-confirm-info'>The <span>{{task.title}}</span> task will be permanently deleted.</p>
-  </div>
-  <div class="btn-action">
-  <div class="cancel-btn">cancel</div>
-  <button type="submit" class="detelet-bnt">delete</button>
-  
-  </div>
+    <div class="head-confirm">
+      <h3 class="title-confirm">Delete task?</h3>
+      <p class="title-confirm-info">
+        <span>{{ task.title }}</span> will be permanently deleted.
+      </p>
+    </div>
+    <div class="btn-action">
+      <div class="cancel-btn">Cancel</div>
+      <button type="submit" class="detelet-bnt">Delete</button>
+    </div>
   </div>
 </form>
-  <script src="{% static "scripts/confirm.js" %}"></script>
