@@ -1,82 +1,153 @@
-
 {% load static %}
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>    
-    <link rel="stylesheet" href="{% static "styles/login.css" %}">
-    <title>login</title>
-</head>
-<body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}" />
+    <title>TaskFlow — Login</title>
+  </head>
+  <body>
     <div class="container" id="container">
-        <div class="form-container sign-up">
-            <form method='POST' action="{% url "signup" %}" >
-                {% csrf_token %}
-                
-                    <h1>Create Account</h1>
-                    <span class="{{ message.tags }}">
-                    {% if messages %}
-                        {% for message in messages %}
-                            {{ message }}
-                        {% endfor %} 
-                    {% else %}
-                            use your email for registeration
-                    {% endif %}
-                    </span>
-                
-                
-                <input required="" placeholder="first name" type="text" name='FirstName' />
-                <input required="" placeholder="last name" type="text"  name='LastName' />
-                <input required="" placeholder="username" type="username"   name='Username'/>
-                <input required="" placeholder="email" type="email"   name='Email'/>
-                <input required="" placeholder="password" type="password"  name='Password' />
-                <input required="" placeholder="ConfirmPassword" type="password"  name='ConfirmPassword' />
-                <button class="submit">Sign Up</button>
-                
-            </form>
-        </div>
-        <div class="form-container sign-in">
-            <form method='POST' action="{% url "login" %}">
-                {% csrf_token %}
-                
-                <h1>Sign In</h1>
-                <span class="{{ message.tags }}">
-                    {% if messages %}
-                        {% for message in messages %}
-                            {{ message }}
-                        {% endfor %} 
-                    {% else %}
-                            use your username password
-                    {% endif %}
-                    </span>
-                
-                <input type="username" placeholder="Username" name="Username">
-                <input type="password" placeholder="Password" name="Password">
-                <a href="#">Forget Your Password?</a>
-                <button type="submit" >Sign In</button>
-            </form>
-        </div>
-        <div class="toggle-container">
-            <div class="toggle">
-                <div class="toggle-panel toggle-left">
-                    <h1>Welcome Back!</h1>
-                    <p>Enter your personal details</p>
-                    <button class="hidden" id="login">Sign In</button>
-                </div>
-                <div class="toggle-panel toggle-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Register with your personal details</p>
-                    <button class="hidden" id="register"><a href="#">Sign Up</a></button>
-                </div>
+      {# ── SIGN UP PANEL ── #}
+      <div class="form-container sign-up">
+        <form method="POST" action="{% url 'signup' %}">
+          {% csrf_token %} {# Logo #}
+          <a href="{% url 'landing' %}" class="form-logo">
+            <div class="form-logo-dot">
+              <svg viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+              </svg>
             </div>
+            <span class="form-logo-name">TaskFlow</span>
+          </a>
+
+          <h1>Create Account</h1>
+
+          <span
+            class="{% if messages %}{% for m in messages %}{{ m.tags }}{% endfor %}{% endif %}"
+          >
+            {% if messages %} {% for message in messages %}{{ message }}{%endfor %} {% else %} Start organizing your life today {% endif %}
+            
+          </span>
+
+          <input
+            required
+            placeholder="First name"
+            type="text"
+            name="FirstName"
+          />
+          <input required placeholder="Last name" type="text" name="LastName" />
+          <input required placeholder="Username" type="text" name="Username" />
+          <input
+            required
+            placeholder="Email address"
+            type="email"
+            name="Email"
+          />
+          <input
+            required
+            placeholder="Password"
+            type="password"
+            name="Password"
+          />
+          <input
+            required
+            placeholder="Confirm password"
+            type="password"
+            name="ConfirmPassword"
+          />
+
+          <button class="submit" type="submit">Create Account</button>
+          <p class="mobile-switch">
+    Already have an account? 
+    <a href="#" onclick="document.getElementById('login').click(); return false;">Sign In</a>
+</p>
+        </form>
+      </div>
+
+      {# ── SIGN IN PANEL ── #}
+      <div class="form-container sign-in">
+        <form method="POST" action="{% url 'login' %}">
+          {% csrf_token %} {# Logo #}
+          <a href="{% url 'landing' %}" class="form-logo">
+            <div class="form-logo-dot">
+              <svg viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+              </svg>
+            </div>
+            <span class="form-logo-name">TaskFlow</span>
+          </a>
+
+          <h1>Welcome back!</h1>
+
+          <span
+            class="{% if messages %}{% for m in messages %}{{ m.tags }}{% endfor %}{% endif %}"
+          >
+            {% if messages %} {% for message in messages %}{{ message }}{% endfor %} {% else %} Sign in to your account {% endif %}
+           
+          </span>
+
+          <input type="text" placeholder="Username" name="Username" required />
+          <input
+            type="password"
+            placeholder="Password"
+            name="Password"
+            required
+          />
+
+          <a href="#">Forgot your password?</a>
+
+          <button type="submit">Sign In</button>
+          <p class="mobile-switch">
+            Don't have an account?
+            <a
+              href="#"
+              onclick="
+                document.getElementById('register').click();
+                return false;
+              "
+              >Sign Up</a
+            >
+          </p>
+        </form>
+      </div>
+
+      {# ── TOGGLE PANEL ── #}
+      <div class="toggle-container">
+        <div class="toggle">
+          {# Left panel — shown when sign-up is active #}
+          <div class="toggle-panel toggle-left">
+            <h1>Welcome Back!</h1>
+            <p>
+              Already have an account? Sign in to pick up where you left off.
+            </p>
+            <ul class="check-list">
+              <li>All your tasks in one place</li>
+              <li>Stay focused every day</li>
+              <li>Track your progress</li>
+            </ul>
+            <button class="hidden" id="login">Sign In</button>
+          </div>
+
+          {# Right panel — shown on sign-in #}
+          <div class="toggle-panel toggle-right">
+            <h1>Hello, Friend!</h1>
+            <p>
+              New here? Create a free account and start getting things done.
+            </p>
+            <ul class="check-list">
+              <li>Free forever, no credit card</li>
+              <li>Set up in 30 seconds</li>
+              <li>Your data stays private</li>
+            </ul>
+            <button class="hidden" id="register">Sign Up</button>
+          </div>
         </div>
+      </div>
     </div>
 
-    <script src="{% static "scripts/login.js" %}"></script>
-</body>
-
+    <script src="{% static 'scripts/login.js' %}"></script>
+  </body>
 </html>
