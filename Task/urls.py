@@ -10,6 +10,6 @@ urlpatterns = [
     path('tasks/<int:task_id>/toggle/', views.task_toggle, name='TaskToggle'),
     path('inbox/' , views.Tasks , name='inbox'),
     path('taday/', views.Today ,name="today"),
-    path('completed/',views.Completed,name="completed")
-
+    path('completed/',views.Completed,name="completed"),
+    path('search/', views.Search, name='search'),
 ]

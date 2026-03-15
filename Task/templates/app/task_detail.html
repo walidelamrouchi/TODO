@@ -56,25 +56,58 @@
       <div class="details_right">
         <div class="details_meta-item">
           <span class="details_meta-label">Project</span>
-          <div class="details_meta-value">{{ task.category|default:"No project" }}</div>
+          <div class="details_meta-value">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"  stroke="#000000" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2"/>
+              <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
+            </svg>{{ task.category|default:"No project" }}
+          </div>
         </div>
         <div class="details_meta-item">
+          
           <span class="details_meta-label">Due date</span>
           <div class="details_meta-value">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+          </svg>
             {% if task.due_date %}{{ task.due_date|date:"M d, Y" }}{% else %}—{% endif %}
           </div>
         </div>
         <div class="details_meta-item">
           <span class="details_meta-label">Priority</span>
-          <div class="details_meta-value">{{ task.get_priority_display|default:"—" }}</div>
+          <div class="details_meta-value">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"  stroke="#000000">
+                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                <line x1="4" y1="22" x2="4" y2="15"  stroke-width="2"/>
+              </svg>
+            {{ task.get_priority_display|default:"—" }}
+          </div>
         </div>
         <div class="details_meta-item">
           <span class="details_meta-label">Status</span>
-          <div class="details_meta-value">{% if task.is_done %}Done{% else %}In Progress{% endif %}</div>
+          <div class="details_meta-value">
+            <svg width="13px" height="13px" viewBox="0 0 0.26 0.26" xmlns="http://www.w3.org/2000/svg"><path fill="#000000" fill-rule="evenodd" d="M0.229 0.072a0.017 0.017 0 0 1 0.021 0.009 0.13 0.13 0 0 1 -0.184 0.162 0.016 0.016 0 0 1 0.016 -0.028 0.098 0.098 0 0 0 0.138 -0.122 0.017 0.017 0 0 1 0.009 -0.021M0.036 0.155A0.113 0.113 0 0 0 0.045 0.179a0.016 0.016 0 1 1 -0.028 0.016 0.113 0.113 0 0 1 -0.013 -0.032 0.016 0.016 0 1 1 0.032 -0.008m0.005 -0.096a0.017 0.017 0 0 1 0.006 0.022 0.113 0.113 0 0 0 -0.01 0.024 0.016 0.016 0 1 1 -0.031 -0.008 0.113 0.113 0 0 1 0.013 -0.031 0.017 0.017 0 0 1 0.022 -0.006m0.124 -0.054a0.113 0.113 0 0 1 0.031 0.013 0.016 0.016 0 0 1 -0.016 0.028 0.113 0.113 0 0 0 -0.024 -0.01A0.016 0.016 0 0 1 0.164 0.005m-0.047 0.011a0.017 0.017 0 0 1 -0.011 0.02 0.113 0.113 0 0 0 -0.024 0.01 0.016 0.016 0 0 1 -0.016 -0.028 0.113 0.113 0 0 1 0.032 -0.013 0.017 0.017 0 0 1 0.02 0.011"/></svg>
+            {% if task.is_done %}Done{% else %}In Progress{% endif %}</div>
         </div>
         <div class="details_meta-item">
           <span class="details_meta-label">Created</span>
-          <div class="details_meta-value">{{ task.created_at|date:"M d, Y" }}</div>
+          <div class="details_meta-value">
+            <svg width="13px" height="13px" viewBox="0 0 0.26 0.26" xmlns="http://www.w3.org/2000/svg" fill="#000000"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.219 0.2a0.114 0.114 0 0 0 0.001 -0.139A0.114 0.114 0 0 0 0.033 0.071V0.033H0.016v0.057l0.008 0.008H0.081V0.081H0.046a0.098 0.098 0 1 1 -0.002 0.094l-0.014 0.008a0.114 0.114 0 0 0 0.19 0.018m-0.055 -0.016 0.012 -0.011L0.13 0.127V0.065H0.114v0.065l0.002 0.006z"/></svg>
+            {{ task.created_at|date:"M d, Y" }}</div>
+        </div>
+        <div class="details_meta-item">
+          <span class="details_meta-label">Update</span>
+          <div class="details_meta-value">
+            <svg fill="#000000" height="13px" width="13px" version="1.1" id="XMLID_218_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 0.39 0.39" enable-background="new 0 0 24 24" xml:space="preserve"><g id="update"><g><path d="M0.195 0.39c-0.067 0 -0.127 -0.033 -0.163 -0.088V0.39H0v-0.146h0.146v0.033H0.054c0.029 0.05 0.081 0.081 0.141 0.081 0.089 0 0.163 -0.073 0.163 -0.163h0.033c0 0.107 -0.088 0.195 -0.195 0.195M0.033 0.195H0C0 0.088 0.088 0 0.195 0c0.067 0 0.127 0.033 0.163 0.088V0h0.033v0.146h-0.146V0.114h0.093c-0.029 -0.05 -0.081 -0.081 -0.141 -0.081C0.106 0.033 0.033 0.106 0.033 0.195"/></g></g></svg>
+            {% if task.updated_at %}{{ task.updated_at|date:"M d, Y" }}
+            {% else %}
+            --
+            {% endif %}
+           
+          </div>
         </div>
       </div>
 

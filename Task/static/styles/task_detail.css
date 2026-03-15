@@ -36,10 +36,6 @@
   color: var(--ink);
 }
 
-.details_header a::before {
-  content: '←';
-  font-size: 14px;
-}
 
 .details_actions {
   display: flex;
@@ -55,8 +51,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-2);
-  border: 1px solid var(--border);
+  background: none;
+  border: none;
   cursor: pointer;
   transition: background var(--t-fast), border-color var(--t-fast);
 }
@@ -80,8 +76,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-2);
-  border: 1px solid var(--border);
+  background: none;
+  border: none;
   cursor: pointer;
   transition: background var(--t-fast), border-color var(--t-fast);
   position: relative;
@@ -89,7 +85,7 @@
 }
 
 .button-delete:hover {
-  background: var(--red-light);
+  background: var(--red);
   border-color: var(--red-mid);
 }
 
@@ -129,6 +125,7 @@
   padding: 24px;
   border-right: 1px solid var(--border);
   display: flex;
+  flex-direction: column;
   gap: 12px;
   align-items: flex-start;
 }

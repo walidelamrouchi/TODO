@@ -1,8 +1,8 @@
 {% load static %}{% load task_filters %}
-<link rel="stylesheet" href="{% static 'styles/task_form.css' %}"/>
 
 {# ── ADD TASK CARD OVERLAY ── #}
 <div class="task-card-overlay" id="cardAddTask">
+  <link rel="stylesheet" href="{% static 'styles/task_form.css' %}"/>
   <div class="task-card">
     <form method="POST" action="{% url 'AddTask' %}">
       {% csrf_token %}

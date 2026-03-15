@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'styles/login.css' %}" />
-    <title>TaskFlow — Login</title>
+    <title>Todoit — Login</title>
   </head>
   <body>
     <div class="container" id="container">
@@ -15,12 +15,7 @@
         <form method="POST" action="{% url 'signup' %}">
           {% csrf_token %} {# Logo #}
           <a href="{% url 'landing' %}" class="form-logo">
-            <div class="form-logo-dot">
-              <svg viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-              </svg>
-            </div>
-            <span class="form-logo-name">TaskFlow</span>
+            <span class="form-logo-name">Todoit</span>
           </a>
 
           <h1>Create Account</h1>
@@ -72,12 +67,8 @@
         <form method="POST" action="{% url 'login' %}">
           {% csrf_token %} {# Logo #}
           <a href="{% url 'landing' %}" class="form-logo">
-            <div class="form-logo-dot">
-              <svg viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-              </svg>
-            </div>
-            <span class="form-logo-name">TaskFlow</span>
+      
+            <span class="form-logo-name">Todoit</span>
           </a>
 
           <h1>Welcome back!</h1>

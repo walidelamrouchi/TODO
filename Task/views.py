@@ -78,3 +78,16 @@ def landing(request):
     if request.user.is_authenticated:
         return redirect('inbox')
     return render(request, 'landing.html')
+
+def Search(request):
+    query = request.GET.get('q', '')
+    results = []
+    if query and request.user.is_authenticated:
+        results = Task.objects.filter(
+            user=request.user,
+            title__iexact=query  # case-insensitive search
+        )
+    return render(request, 'app/search.html', {
+        'results': results,
+        'query': query
+    })

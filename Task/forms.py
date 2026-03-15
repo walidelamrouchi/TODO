@@ -10,7 +10,7 @@ class TaskForm(forms.ModelForm):
             'title': forms.TextInput(attrs={
                 'class': 'task-card__title-input',
                 'placeholder': 'Task name',
-                'autofocus': True
+                
             }),
             'description': forms.TextInput(attrs={
                 'class': 'task-card__desc-input',

@@ -28,7 +28,7 @@
 
   /* Sidebar */
   --sidebar-w:  240px;
-  --sidebar-bg: #f5f3ef;
+  --sidebar-bg: #F6F6F6;
   --sidebar-active-bg: #ede8e3;
 
   /* Shadows */
@@ -97,6 +97,7 @@ ul, ol { list-style: none; }
 
 .app-layout__sidebar.sidebar-collapsed {
   width: 0;
+  
 }
 
 /* Main content column */

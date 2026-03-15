@@ -102,7 +102,10 @@
   border: 1px solid var(--border);
   background: var(--white);
   cursor: pointer;
-  transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
+  transition:
+    background var(--t-fast),
+    border-color var(--t-fast),
+    color var(--t-fast);
   white-space: nowrap;
 }
 
@@ -220,7 +223,9 @@
   background: var(--red);
   border: none;
   cursor: pointer;
-  transition: background var(--t-fast), opacity var(--t-fast);
+  transition:
+    background var(--t-fast),
+    opacity var(--t-fast);
 }
 
 .task-card__submit:hover {

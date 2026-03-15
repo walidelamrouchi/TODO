@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>TaskFlow — Clarity, finally.</title>
+<title>Todoit — Clarity, finally.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{% static "styles/main2.css" %}">
@@ -15,14 +15,14 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-dot"></div>
-    TaskFlow
+  <a href="#hero" class="nav-logo">
+    
+    Todoit
   </a>
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
     <li><a href="#how">How it works</a></li>
-    <li><a href="#">Pricing</a></li>
+    <li><a href="#hero">Pricing</a></li>
   </ul>
   <div class="nav-cta">
     <a href="{% url "login" %}" class="btn-ghost">Log in</a>
@@ -31,8 +31,8 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-badge">✦ Your productivity, simplified</div>
+<section class="hero" id="hero">
+  
   <h1>Clarity, <em>finally.</em></h1>
   <p>The todo app that gets out of your way. Capture every task, stay focused, and actually get things done.</p>
   <div class="hero-actions">
@@ -40,58 +40,7 @@
     <span class="hero-note">No credit card required</span>
   </div>
 
-  <div class="hero-preview">
-    <div class="app-window">
-      <div class="app-window-bar">
-        <div class="dot dot-red"></div>
-        <div class="dot dot-yellow"></div>
-        <div class="dot dot-green"></div>
-      </div>
-      <div class="app-window-body">
-        <div class="app-sidebar-preview">
-          <div class="sidebar-item-preview active">
-            <div class="sidebar-dot"></div> Inbox
-            <span style="margin-left:auto;font-size:11px;">3</span>
-          </div>
-          <div class="sidebar-item-preview">
-            <div class="sidebar-dot"></div> Today
-            <span style="margin-left:auto;font-size:11px;color:#db4035;">5</span>
-          </div>
-          <div class="sidebar-item-preview">
-            <div class="sidebar-dot"></div> Completed
-          </div>
-        </div>
-        <div class="app-content-preview">
-          <h3>Inbox</h3>
-          <div class="task-row">
-            <div class="task-check"></div>
-            <span class="task-text">Design new landing page mockup</span>
-            <span class="task-tag tag-red">High</span>
-          </div>
-          <div class="task-row">
-            <div class="task-check"></div>
-            <span class="task-text">Review pull request from team</span>
-            <span class="task-tag tag-blue">Work</span>
-          </div>
-          <div class="task-row">
-            <div class="task-check done"></div>
-            <span class="task-text done-text">Send weekly report</span>
-            <span class="task-tag tag-green">Done</span>
-          </div>
-          <div class="task-row">
-            <div class="task-check"></div>
-            <span class="task-text">Plan weekend trip to mountains</span>
-            <span class="task-tag tag-orange">Personal</span>
-          </div>
-          <div class="task-row">
-            <div class="task-check"></div>
-            <span class="task-text">Buy groceries for the week</span>
-            <span class="task-tag tag-blue">Today</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
 </section>
 
 <!-- SOCIAL PROOF -->
@@ -120,32 +69,59 @@
   <h2 class="section-title">Everything you need to stay on top</h2>
   <div class="features-grid">
     <div class="feature-card">
-      <div class="feature-icon icon-red">📥</div>
+      <div class="feature-icon icon-red"><svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" />
+          <path
+            d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"
+          />
+        </svg></div>
       <h3>Smart Inbox</h3>
       <p>Capture every task instantly. Your inbox is always clean and organized, ready for what comes next.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon icon-blue">📅</div>
+      <div class="feature-icon icon-blue"><svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg></div>
       <h3>Today View</h3>
       <p>See only what matters today. No noise, no distraction — just your daily focus list.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon icon-green">✅</div>
+      <div class="feature-icon icon-green"><svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20" xml:space="preserve" width="20" height="20"><style type="text/css">.st0{fill:none;}</style><path d="M9.75 1.667h-0.667l0.167 1.667h1.083c3.333 0.25 6.083 2.917 6.25 6.333 0.167 3.667 -2.667 6.833 -6.333 7h-1l-0.083 1.667h1.417c4.5 -0.333 7.917 -4.167 7.75 -8.667 -0.167 -4.25 -3.583 -7.583 -7.75 -7.917h-0.417c-0.167 -0.083 -0.25 -0.083 -0.417 -0.083m-2.917 0.583c-0.417 0.25 -0.833 0.417 -1.25 0.667l0.917 1.417c0.25 -0.167 0.583 -0.333 0.917 -0.5zM3.75 4.5c-0.333 0.333 -0.583 0.75 -0.833 1.083l1.417 0.833c0.167 -0.25 0.417 -0.5 0.667 -0.833zm9.083 2.5 -3.833 4.333 -2.25 -1.75L5.833 11l3.5 2.667L14.167 8.167zM2 7.5c-0.167 0.417 -0.25 0.917 -0.25 1.333l1.667 0.25c0.083 -0.333 0.083 -0.75 0.25 -1.083zm1.417 3.333 -1.667 0.167v0.25c0.083 0.333 0.167 0.75 0.25 1.083l1.583 -0.5c-0.083 -0.25 -0.167 -0.583 -0.167 -0.917zm0.917 2.667 -1.417 0.917c0.25 0.417 0.5 0.75 0.833 1.083L5 14.417c-0.25 -0.333 -0.5 -0.583 -0.667 -0.917m2.167 2.167 -0.917 1.417c0.417 0.25 0.833 0.417 1.25 0.667l0.667 -1.5c-0.417 -0.25 -0.75 -0.417 -1 -0.583"/><path class="st0" width="24" height="24" d="M0 0H20V20H0V0z"/></svg></div>
       <h3>Track Progress</h3>
       <p>Watch your completed tasks stack up. Built-in completion tracking keeps you motivated.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon icon-orange">🚩</div>
+      <div class="feature-icon icon-orange"><svg width="20px" height="20px" viewBox="0 0 24 24"  stroke="none">
+                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                <line x1="4" y1="22" x2="4" y2="15" stroke="#999" stroke-width="2"/>
+              </svg></div>
       <h3>Priority Levels</h3>
       <p>Mark tasks by urgency. Never miss what's critical with color-coded priority flags.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon icon-red">📁</div>
+      <div class="feature-icon icon-red"><svg width="20px" height="20px" viewBox="0 0 20 20" id="icon" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title>category</title><path d="M16.875 13.838V11.25a1.25 1.25 0 0 0 -1.25 -1.25h-5v-2.5h1.25a1.25 1.25 0 0 0 1.25 -1.25V2.5a1.25 1.25 0 0 0 -1.25 -1.25h-3.75a1.25 1.25 0 0 0 -1.25 1.25v3.75a1.25 1.25 0 0 0 1.25 1.25h1.25v2.5H4.375a1.25 1.25 0 0 0 -1.25 1.25v2.589a2.5 2.5 0 1 0 1.25 0V11.25h5v2.589a2.5 2.5 0 1 0 1.25 0V11.25h5v2.588a2.5 2.5 0 1 0 1.25 0M8.125 2.5h3.75l0.001 3.75H8.125ZM5 16.25a1.25 1.25 0 1 1 -1.25 -1.25 1.25 1.25 0 0 1 1.25 1.25m6.25 0a1.25 1.25 0 1 1 -1.25 -1.25 1.252 1.252 0 0 1 1.25 1.25m5 1.25a1.25 1.25 0 1 1 1.25 -1.25 1.25 1.25 0 0 1 -1.25 1.25"/><path id="_Transparent_Rectangle_" data-name="&amp;lt;Transparent Rectangle&amp;gt;" class="cls-1" width="32" height="32" d="M0 0H20V20H0V0z"/></svg></div>
       <h3>Categories</h3>
       <p>Organize by Work, Personal, or Home. Keep every part of your life neatly separated.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon icon-blue">🔒</div>
+      <div class="feature-icon icon-blue"><svg width="20px" height="20px" viewBox="0 0 0.6 0.6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.075 0.325V0.106l0.049 -0.004A0.4 0.4 0 0 0 0.247 0.072L0.3 0.05l0.053 0.022a0.4 0.4 0 0 0 0.123 0.03l0.049 0.004V0.325a0.225 0.225 0 1 1 -0.45 0" stroke="#000000" stroke-width="0.05" stroke-linecap="round" stroke-linejoin="round"/><path d="m0.2 0.3 0.063 0.063L0.4 0.225" stroke="#000000" stroke-width="0.05" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <h3>Private & Secure</h3>
       <p>Your tasks are yours alone. Each account is fully isolated — no one sees your data.</p>
     </div>
@@ -230,7 +206,7 @@
     </div>
     <div class="testimonial-card">
       <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">"I've tried dozens of productivity apps. TaskFlow is the only one I've stuck with for more than a week."</p>
+      <p class="testimonial-text">"I've tried dozens of productivity apps. Todoit is the only one I've stuck with for more than a week."</p>
       <div class="testimonial-author">
         <div class="author-avatar" style="background:#1967d2;">A</div>
         <div class="author-info">
@@ -256,7 +232,7 @@
 <!-- CTA -->
 <section class="cta-section">
   <h2>Start getting things <em>done.</em></h2>
-  <p>Join thousands of people who trust TaskFlow every day.</p>
+  <p>Join thousands of people who trust Todoit every day.</p>
   <a href="{% url "signup" %}" class="btn-primary-lg">Create free account →</a>
 </section>
 
@@ -266,7 +242,7 @@
     <div class="footer-brand">
       <a href="#" class="nav-logo" style="color:#fff;">
         <div class="nav-logo-dot"></div>
-        TaskFlow
+        Todoit
       </a>
       <p>The simple todo app that helps you capture tasks, stay focused, and actually get things done.</p>
     </div>
@@ -296,10 +272,24 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 TaskFlow. All rights reserved.</p>
+    <p>© 2026 Todoit. All rights reserved.</p>
     <p>Made with ♥ using Django</p>
   </div>
 </footer>
+<script>
+  // ─── SCROLL ANIMATION ───
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
 
+  // Observe all animatable elements
+  document.querySelectorAll('.feature-card, .step, .testimonial-card, .mini-task, .proof-item').forEach(el => {
+    observer.observe(el);
+  });
+</script>
 </body>
 </html>

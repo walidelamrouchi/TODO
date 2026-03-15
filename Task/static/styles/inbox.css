@@ -81,7 +81,6 @@
   color: var(--ink-4);
   white-space: nowrap;
   flex-shrink: 0;
-  opacity: 0;
   transition: opacity var(--t-fast), color var(--t-fast);
   padding: 4px 8px;
   border-radius: var(--r-sm);
