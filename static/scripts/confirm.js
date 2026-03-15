@@ -4,19 +4,32 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   const modal     = document.querySelector('.task_confirm');
-  const deleteBtn = document.querySelector('.button-delete');
+  const deleteBtn = document.querySelectorAll('.button-delete');
   const cancelBtn = document.querySelector('.cancel-btn');
 
   if (!modal) return;
 
   // open modal
   if (deleteBtn) {
-    deleteBtn.addEventListener('click', function (e) {
+    deleteBtn.forEach(function(dltbtn){
+      dltbtn.addEventListener('click', function (e) {
       e.preventDefault();
+      const taskId = this.dataset.taskId; // for form 
+      const taskTitle = this.dataset.taskTitle; // for display content
+      // Update the form action dynamically
+      const form = modal.querySelector('form');
+      const spanTitle = form.querySelector('.title-confirm-info').querySelector('span');
+      const url = this.dataset.deleteUrl;
+      if (form && taskId && spanTitle) {
+        form.action = url;
+        spanTitle.textContent = taskTitle;
+
+      }
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
     });
-  }
+  })
+}
 
   // close modal
   function closeConfirm() {
@@ -38,3 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === 'Escape') closeConfirm();
   });
 });
+
+
+

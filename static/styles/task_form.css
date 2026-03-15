@@ -8,29 +8,29 @@
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
   z-index: 400;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  opacity: 0;
+
   pointer-events: none;
   transition: opacity var(--t-mid);
 }
 
 .task-card-overlay.open {
-  opacity: 1;
+  display: flex;
   pointer-events: auto;
 }
 
 /* ─── CARD ─── */
 .task-card {
+  padding: 5px;
   background: var(--white);
   border-radius: var(--r-lg);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-xl);
   width: 100%;
   max-width: 560px;
-  overflow: hidden;
   transform: translateY(12px) scale(0.98);
   transition: transform var(--t-mid);
 }

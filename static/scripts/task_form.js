@@ -82,12 +82,32 @@ function selectPriority(value, label, color) {
 }
 
 // ─── SELECT CATEGORY ───
+const CATEGORY_DATA = {
+    1: {
+        'label': 'Work',
+        'color': '#555',
+        'icon': '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>'
+    },
+    2: {
+        'label': 'Personal',
+        'color': '#555',
+        'icon': '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
+    },
+    3: {
+        'label': 'Home Improvement',
+        'color': '#555',
+        'icon': '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>'
+    },
+}
 function selectCategory(value, label) {
   const select = document.getElementById('categorySelect');
   if (select) select.value = value;
 
   const lbl = document.getElementById('categoryLabel');
-  if (lbl) { lbl.textContent = label; lbl.style.color = '#202020'; }
+  const IconCateg = document.getElementById('categoryIcon');
+  if (lbl) { lbl.textContent = label; 
+              lbl.style.color = '#202020';
+              IconCateg.innerHTML= CATEGORY_DATA[value].icon; }
 
   // mark selected
   document.querySelectorAll('#categoryMenu .dropdown__item').forEach(item => {

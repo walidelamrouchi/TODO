@@ -1,6 +1,6 @@
 {% load static %}
 
-<form method="POST" action="{% url 'TaskDelete' task.id %}">
+<form method="POST" action="{% url 'TaskDelete' task.id %}" data-task=''>
   {% csrf_token %}
   <div class="confirm-box">
     <div class="head-confirm">
@@ -15,3 +15,4 @@
     </div>
   </div>
 </form>
+

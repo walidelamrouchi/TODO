@@ -180,17 +180,17 @@
   inset: 0;
   background: rgba(0,0,0,0.45);
   z-index: 400;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  opacity: 0;
+  
   pointer-events: none;
   transition: opacity var(--t-mid);
 }
 
 .task_confirm.open {
-  opacity: 1;
+  display: flex;
   pointer-events: auto;
 }
 
@@ -263,6 +263,15 @@
 
 .detelet-bnt:hover {
   background: var(--red-dark);
+}
+.actions_menu{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  
+}
+.item-details-link{
+  
 }
 
 /* ─── RESPONSIVE ─── */

@@ -7,7 +7,7 @@
 @media (max-width: 768px) {
   /* Push content right to make room for float toggle btn */
   .app-layout__content {
-    padding: 56px 20px 24px;
+    padding: 56px 45px;
   }
 
   /* Sidebar becomes overlay — handled in sidebar.css */
@@ -29,7 +29,7 @@
 
 @media (max-width: 480px) {
   .app-layout__content {
-    padding: 52px 16px 20px;
+    padding: 52px 56px;
   }
 
   .inbox-title {
