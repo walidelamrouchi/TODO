@@ -1,12 +1,18 @@
 {% load static %} {% load task_filters %}
 <link rel="stylesheet" href="{% static 'styles/task_detail.css' %}" />
-<div class="task-item">
-  {% include './toggle_done.html' with task=task %}
-  <a href="{% url 'TaskDetail' task.id %}" class="item-details-link"></a>
-
+<div
+  class="task-item"
+  onclick="window.location='{% url 'TaskDetail' task.id %}'"
+>
+  <div class ="checkbox-label" >
+    {% include './toggle_done.html' with task=task %}
+    <span class="checkbox-text {% if task.is_done %}text-done{% endif %}"
+      >{{ task.title }}</span
+    >
+  </div>
   <div class="actions_menu">
     {# edit #}
-    <a href="{% url 'TaskUpdate' task.id %}">
+    <a href="{% url 'TaskUpdate' task.id %}" onclick="event.stopPropagation()">
       <button class="edit-button" title="Edit task">
         <svg class="edit-svgIcon" viewBox="0 0 512 512">
           <path
@@ -62,7 +68,7 @@
       </svg>
     </button>
   </div>
- 
+
   <div class="task_confirm" id="deleteConfirm">
     {% include "app/task_confirm_delete.html" with task=task %}
   </div>

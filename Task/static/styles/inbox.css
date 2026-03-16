@@ -55,11 +55,13 @@
 .task-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 8px;
   padding: 10px 0;
   border-bottom: 1px solid var(--border);
   transition: background var(--t-fast);
   position: relative;
+
 }
 
 .task-item:last-child {
@@ -73,6 +75,12 @@
   padding-right: 8px;
   margin-left: -8px;
   margin-right: -8px;
+}
+.task-item-container{
+  
+}
+.actions_menu{
+  
 }
 
 /* ─── VIEW DETAILS LINK ─── */

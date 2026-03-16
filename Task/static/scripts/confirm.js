@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     deleteBtn.forEach(function(dltbtn){
       dltbtn.addEventListener('click', function (e) {
       e.preventDefault();
+      e.stopPropagation();
       const taskId = this.dataset.taskId; // for form 
       const taskTitle = this.dataset.taskTitle; // for display content
       // Update the form action dynamically
@@ -32,9 +33,10 @@ document.addEventListener('DOMContentLoaded', function () {
 }
 
   // close modal
-  function closeConfirm() {
+  function closeConfirm(e) {
     modal.classList.remove('open');
     document.body.style.overflow = '';
+    e.stopPropagation();
   }
 
   if (cancelBtn) {

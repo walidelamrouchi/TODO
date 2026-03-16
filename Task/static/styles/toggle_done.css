@@ -12,7 +12,7 @@
 .checkbox-container {
   display: flex;
   align-items: center;
-  flex: 1;
+  gap: 7px;
   min-width: 0;
 }
 
@@ -34,8 +34,8 @@
 
 /* ─── CUSTOM CHECKBOX ─── */
 .checkbox-box {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   border: 2px solid var(--border-2);
   flex-shrink: 0;
@@ -73,8 +73,8 @@
 
 /* checkmark */
 .check-icon {
-  width: 11px;
-  height: 11px;
+  width: 13px;
+  height: 13px;
   fill: white;
   position: relative;
   z-index: 1;
@@ -92,16 +92,22 @@
 
 /* ─── TEXT ─── */
 .checkbox-text {
-  font-size: 14px;
+  font-size: var(--text-normal);
+  font-weight: var(--text-sm-bold);
   color: var(--ink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   transition: color var(--t-fast);
   line-height: 1.4;
+  
 }
 
-.task-checkbox:checked + .checkbox-label .checkbox-text {
+.task-checkbox:checked +  .checkbox-text {
+  color: var(--ink-4);
+  text-decoration: line-through;
+}
+.text-done{
   color: var(--ink-4);
   text-decoration: line-through;
 }

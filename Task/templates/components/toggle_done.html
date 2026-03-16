@@ -1,7 +1,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'styles/toggle_done.css' %}"/>
 
-<form action="{% url 'TaskToggle' task.id %}" method="POST">
+<form action="{% url 'TaskToggle' task.id %}" method="POST" onclick="event.stopPropagation()">
   {% csrf_token %}
   <div class="checkbox-container">
     <input
@@ -17,7 +17,7 @@
           <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
         </svg>
       </div>
-      <span class="checkbox-text">{{ task.title }}</span>
     </label>
   </div>
 </form>
+

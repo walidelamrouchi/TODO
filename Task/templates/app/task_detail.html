@@ -49,7 +49,10 @@
     <div class="details_body">
 
       <div class="details_left">
-        {% include 'components/toggle_done.html' with task=task %}
+        <div class="title-task-toggle">
+          {% include 'components/toggle_done.html' with task=task %}
+          <span class="checkbox-text {% if task.is_done %}text-done{% endif %} ">{{ task.title }}</span>
+         </div>
         <p class="details__description">{{ task.description|default:"No description." }}</p>
       </div>
 
