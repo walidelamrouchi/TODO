@@ -49,6 +49,9 @@ nav {
   background: rgba(250, 249, 247, 0.85);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
 }
 
 .nav-logo {
@@ -621,7 +624,7 @@ footer {
 
 /* ─── SCROLL ANIMATIONS ─── */
 
-.step,
+.step,.mini-task ,
 .testimonial-card,
 .proof-item {
   opacity: 0;
@@ -630,33 +633,18 @@ footer {
     opacity 0.6s ease,
     transform 0.6s ease;
 }
-.mini-task{
-  opacity: 0;
-  transform: translateX(-30px);
-  transition:
-    opacity 0.6s ease,
-    transform .6s ease;
-}
-.feature-card:nth-child(2) ,
+.feature-card:nth-child(2),
 .feature-card:nth-child(4),
-.feature-card:nth-child(6){
-  opacity: 0;
-  transform: translateX(60px);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
-}
+.feature-card:nth-child(6),
 .feature-card:nth-child(1),
 .feature-card:nth-child(3),
-.feature-card:nth-child(5){
+.feature-card:nth-child(5) {
   opacity: 0;
-  transform: translateX(-60px);
+  transform: translateY(30px);
   transition:
     opacity 0.6s ease,
     transform 0.6s ease;
 }
-
-
 
 .feature-card.visible,
 .step.visible,
@@ -666,6 +654,7 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+
 
 /* Stagger effect for grids */
 .feature-card:nth-child(2) {
@@ -708,10 +697,10 @@ footer {
   transition-delay: 0.6s;
 }
 .mini-task:nth-child(4) {
-  transition-delay: 0.7s;
+  transition-delay: 0.8s;
 }
 .mini-task:nth-child(5) {
-  transition-delay: 0.8s;
+  transition-delay: 1s;
 }
 
 /* ─── RESPONSIVE ─── */
