@@ -131,6 +131,7 @@
 .title-task-toggle{
   display: flex;
   gap: 8px;
+  align-items: flex-start;
 
 }
 .title-desc{
@@ -168,6 +169,7 @@
   padding-top: 2px;
   word-break: break-word;  /* ← wrap long words too */
   white-space: normal; 
+
 }
 
 /* ─── META PANEL ─── */
@@ -345,6 +347,8 @@
 .date_task{
   font-size: 11px;
 }
-  
-
+.category{
+  font-size: 10px;
+  padding: 3px 6px;
+}
 }
