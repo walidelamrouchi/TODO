@@ -28,10 +28,7 @@
 }
 
 @media (max-width: 480px) {
-  .app-layout__content {
-    padding: 52px 56px;
-  }
-
+  
   .inbox-title {
     font-size: 18px;
   }

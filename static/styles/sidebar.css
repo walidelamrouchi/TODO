@@ -331,6 +331,15 @@
 .sidebar--closed .sidebar__search {
   display: none;            /* ← hide text input */
 }
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 299; /* just below sidebar (300) */
+  opacity: 0;
+  transition: opacity var(--t-mid);
+}
 
 /* ─── RESPONSIVE: mobile ─── */
 @media (max-width: 768px) {
@@ -341,6 +350,7 @@
     left: 0;
     z-index: 300;
     box-shadow: var(--shadow-lg);
+    transition: transform var(--t-mid), opacity var(--t-mid);
   }
 
   /* On mobile, closed = completely hidden */
@@ -386,5 +396,9 @@
     display: flex;
     opacity: 1;
     pointer-events: auto;
+  }
+   .sidebar-overlay.active {
+    display: block;
+    opacity: 1;
   }
 }

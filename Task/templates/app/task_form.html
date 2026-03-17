@@ -10,7 +10,7 @@
       {# title + description #}
       <div class="task-card__body">
         {{ add_task_form.title }}
-        {{ add_task_form.description }}
+        {{add_task_form.description}}
       </div>
 
       {# action row #}
@@ -61,8 +61,8 @@
             <span id="categoryLabel">Category</span>
           </div>
           <ul class="dropdown__menu" id="categoryMenu">
-            <li class="dropdown__item" onclick="selectCategory(1,'Work')">{{ 1|category_icon }} Work</li>
-            <li class="dropdown__item" onclick="selectCategory(2,'Personal')">{{ 2|category_icon }} Personal</li>
+            <li class="dropdown__item" onclick="selectCategory(1,'Personal')">{{ 1|category_icon }} Work</li>
+            <li class="dropdown__item" onclick="selectCategory(2,'Work')">{{ 2|category_icon }} Personal</li>
             <li class="dropdown__item" onclick="selectCategory(3,'Home Improvement')">{{ 3|category_icon }} Home Improvement</li>
           </ul>
         </div>

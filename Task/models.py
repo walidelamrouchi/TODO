@@ -4,7 +4,7 @@ from django.contrib.auth.models import User #class user permet de gere , cree et
 
 #class Category
 class Category(models.Model):
-    CATEGORY = [(1 ,'Personal'),
+    CATEGORY = [(1,'Personal'),
                 (2,'Work'),
                 (3,'Home Improvement'),
                 ]

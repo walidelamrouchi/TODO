@@ -8,11 +8,13 @@
 function toggleSidebar() {
   const sidebar     = document.getElementById('sidebar');
   const sidebarWrap = document.querySelector('.app-layout__sidebar');
+  const overlay     = document.querySelector('.sidebar-overlay');
   if (!sidebar) return;
 
   sidebar.classList.toggle('sidebar--closed');
   sidebarWrap.classList.toggle('sidebar-collapsed');
-
+  
+  if (overlay) overlay.classList.toggle('active'); // ← ADD
 }
 let taskCardReady = false;
 // Always start closed on page load

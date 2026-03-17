@@ -10,7 +10,7 @@
   {% block extra_css %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
-
+   
   {# floating toggle btn — only visible when sidebar is closed #}
   <button class="sidebar__float-btn" onclick="toggleSidebar()" title="Open sidebar">
     <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
@@ -41,8 +41,9 @@
       {% block content %}{% endblock %}
 
     </main>
-
+   
   </div>
+  
 
   {# ── ADD TASK CARD (once, available everywhere) ── #}
   {% include "app/task_form.html" %}
@@ -50,6 +51,6 @@
   <script src="{% static 'scripts/main.js' %}"></script>
   <script src="{% static 'scripts/task_form.js' %}"></script>
   {% block extra_js %}{% endblock %}
-
+<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
 </body>
 </html>

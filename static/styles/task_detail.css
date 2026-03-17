@@ -3,15 +3,16 @@
    ============================================================ */
 
 .details-container {
-  max-width: 760px;
+  max-width: 800px;
   margin: 0 auto;
+  
 }
 
 .details_card {
   background: var(--white);
-  border-radius: var(--r-lg);
-  border: 1px solid var(--border);
   overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg) ;
 }
 
 /* ─── HEADER ─── */
@@ -19,10 +20,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
+  height: 48px;
+  padding: 0px 8px 0px 12px;
   border-bottom: 1px solid var(--border);
 }
 
+.details_actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 .details_header a {
   font-size: 13px;
   color: var(--ink-3);
@@ -35,14 +42,6 @@
 .details_header a:hover {
   color: var(--ink);
 }
-
-
-.details_actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 /* ─── EDIT BUTTON ─── */
 .edit-button {
   width: 32px;
@@ -132,30 +131,65 @@
 .title-task-toggle{
   display: flex;
   gap: 8px;
+
+}
+.title-desc{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;  /* ← this is the fix! */
+  flex: 1;  
+  
+}
+.checkbox-date-title{
+  display: flex;
+  align-items: start;
+  gap: 8px;
+  
+}
+.title-task{
+  font-size: var(--text-normal);
+}
+.date_task{
+  font-size: 12px;
+  color: var(--ink-2);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.date_task svg{
+  color: var(--ink-2);
+  font-weight: 300;
 }
 .details__description {
   font-size: 14px;
   color: var(--ink-2);
   line-height: 1.6;
   padding-top: 2px;
+  word-break: break-word;  /* ← wrap long words too */
+  white-space: normal; 
 }
 
 /* ─── META PANEL ─── */
 .details_right {
-  width: 220px;
+  min-width: 220px;
   flex-shrink: 0;
-  padding: 20px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
 }
 
 .details_meta-item {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  padding: 8px 0px;
+  border-bottom: 1px solid var(--border) ;
 }
-
+.updateitem{
+  border: none;
+}
 .details_meta-label {
   font-size: 11px;
   font-weight: 600;
@@ -274,19 +308,43 @@
   
 }
 
+/*category show*/
+.category{
+  padding:5px 10px ;
+  text-align: center;
+  border-radius:var(--r-lg) ;
+  font-size: 12px;
+}
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 640px) {
+  .details_card {
+  border: none;
+}
   .details_body {
     flex-direction: column;
+    gap: 20px;
+    padding: 16px 0px 0px;
   }
 
   .details_left {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
+    border: none;
+    padding: 0px 12px;
+  }
+  .details_right{
+    padding: 0px 12px;
+    border: none;
   }
 
   .details_right {
     width: 100%;
   }
+  .title-task{
+  font-size: 14px;
+}
+.date_task{
+  font-size: 11px;
+}
+  
+
 }

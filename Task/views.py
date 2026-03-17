@@ -5,12 +5,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate , login , logout
 from django.contrib import messages
 from .forms import TaskForm
-from .models import Task
+from .models import Task 
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
 # Create your views here.
-
 
 
 def Logout(request):
@@ -91,3 +90,4 @@ def Search(request):
         'results': results,
         'query': query
     })
+    
