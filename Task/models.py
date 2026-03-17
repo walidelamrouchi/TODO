@@ -6,7 +6,7 @@ from django.contrib.auth.models import User #class user permet de gere , cree et
 class Category(models.Model):
     CATEGORY = [(1,'Personal'),
                 (2,'Work'),
-                (3,'Home Improvement'),
+                (3,'Home'),
                 ]
     name = models.IntegerField(choices=CATEGORY)
     def __str__(self):

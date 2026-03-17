@@ -54,14 +54,19 @@
 /* ─── TASK ITEM ─── */
 .task-item {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   gap: 8px;
   padding: 10px 0;
   border-bottom: 1px solid var(--border);
   transition: background var(--t-fast);
   position: relative;
+  align-items: flex-start;
 
+}
+.checkbox-label {
+  min-width: 0;
+  flex: 1;
+  word-break: break-word;
 }
 
 .task-item:last-child {

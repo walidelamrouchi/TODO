@@ -11,10 +11,13 @@ class TaskForm(forms.ModelForm):
                 'class': 'task-card__title-input',
                 'placeholder': 'Task name',
                 
+                
             }),
-            'description': forms.TextInput(attrs={
+            'description': forms.Textarea(attrs={
                 'class': 'task-card__desc-input',
                 'placeholder': 'Description',
+                'row': 1,
+                
             }),
             'priority': forms.Select(attrs={
                 'class': 'task-card__select',

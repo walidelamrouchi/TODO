@@ -59,4 +59,10 @@ document.addEventListener('click', function (e) {
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') addtaskclose();
 });
+function removeMsg(){
+  document.querySelector('.alert').style.display = 'none';
+}
+let btncancel = document.querySelector('.cancelmsg');
+btncancel.addEventListener('click' , removeMsg);
+setTimeout(removeMsg , 4000);
 

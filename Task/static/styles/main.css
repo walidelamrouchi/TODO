@@ -144,6 +144,9 @@ ul, ol { list-style: none; }
   font-size: 13px;
   font-weight: 500;
   margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .alert--success {

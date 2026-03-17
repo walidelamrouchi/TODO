@@ -24,7 +24,7 @@
             <line x1="8" y1="2" x2="8" y2="6"/>
             <line x1="16" y1="2" x2="16" y2="6"/>
           </svg>
-          <span id="dueDateLabel">Due date</span>
+          <span id="dueDateLabel">Date</span>
           {{ add_task_form.due_date }}
         </label>
 
@@ -61,9 +61,9 @@
             <span id="categoryLabel">Category</span>
           </div>
           <ul class="dropdown__menu" id="categoryMenu">
-            <li class="dropdown__item" onclick="selectCategory(1,'Personal')">{{ 1|category_icon }} Work</li>
-            <li class="dropdown__item" onclick="selectCategory(2,'Work')">{{ 2|category_icon }} Personal</li>
-            <li class="dropdown__item" onclick="selectCategory(3,'Home Improvement')">{{ 3|category_icon }} Home Improvement</li>
+            <li class="dropdown__item" onclick="selectCategory(1,'Personal' ,'{{1 |category_color}}')">{{ 1|category_icon }} Work</li>
+            <li class="dropdown__item" onclick="selectCategory(2,'Work','{{2 |category_color}}')">{{ 2|category_icon }} Personal</li>
+            <li class="dropdown__item" onclick="selectCategory(3,'Home Improvement','{{3 |category_color}}')">{{ 3|category_icon }} Home Improvement</li>
           </ul>
         </div>
 

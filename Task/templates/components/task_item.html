@@ -32,9 +32,11 @@
         </div>
   </div>
   <div class="actions_menu">
+    {% if task.category %}
     <div class="category" style="background-color:{{ task.category.name | category_color }}">
       <span class="category-text">{{task.category}}</span>
     </div>
+    {% endif %}
     {# edit #}
     <a href="{% url 'TaskUpdate' task.id %}" onclick="event.stopPropagation()">
       <button class="edit-button" title="Edit task">

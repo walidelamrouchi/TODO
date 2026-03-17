@@ -95,11 +95,11 @@
   font-size: var(--text-normal);
   font-weight: var(--text-sm-bold);
   color: var(--ink);
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: unset;
   transition: color var(--t-fast);
   line-height: 1.4;
+  word-break: break-word;   /* ← add this */
   
 }
 
