@@ -401,4 +401,7 @@
     display: block;
     opacity: 1;
   }
+  .sidebar:not(.sidebar--closed) .sidebar__user {
+    display: flex !important;
+  }
 }

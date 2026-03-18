@@ -39,14 +39,14 @@
     {% endif %}
     {# edit #}
     <a href="{% url 'TaskUpdate' task.id %}" onclick="event.stopPropagation()">
-      <button class="edit-button" title="Edit task">
+      <button class="edit-button btnaction" title="Edit task">
         <svg fill="#000000" width="20px" height="20px" viewBox="0 0 0.72 0.72" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M0.63 0.6a0.03 0.03 0 0 1 0 0.06H0.09a0.03 0.03 0 0 1 0 -0.06zM0.189 0.399l0.33 -0.33a0.03 0.03 0 0 1 0.04 -0.002l0.003 0.002 0.09 0.09a0.03 0.03 0 0 1 0.002 0.04l-0.002 0.003 -0.33 0.33a0.03 0.03 0 0 1 -0.017 0.009L0.3 0.54H0.21a0.03 0.03 0 0 1 -0.03 -0.026L0.18 0.51v-0.09a0.03 0.03 0 0 1 0.006 -0.018zl0.33 -0.33zM0.54 0.132l-0.3 0.3V0.48h0.048l0.3 -0.3z"/></svg>
       </button>
     </a>
 
     {# delete #}
     <button
-      class="button-delete"
+      class="button-delete btnaction"
       title="Delete task"
       data-task-id="{{ task.id }}"
       data-task-title="{{ task.title }}"
@@ -70,6 +70,8 @@
           </clipPath>
         </defs>
       </svg>
+     
+
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
