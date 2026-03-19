@@ -104,9 +104,10 @@ class Category(models.Model):
 ```
 ### Task
 ```python
-user        = ForeignKey(User)
-category    = ForeignKey(Category, null=True)
-...
+class Tasks(models.Model):
+    user        = ForeignKey(User)
+    category    = ForeignKey(Category, null=True)
+    ...
 ```
 
 ---
