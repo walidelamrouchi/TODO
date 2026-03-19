@@ -6,7 +6,8 @@
 ![Django](https://img.shields.io/badge/Django-6.0-green)
 ![Deployed](https://img.shields.io/badge/Deployed-Railway-purple)
 
-**Live demo:** [todo-production-cbc3e.up.railway.app](https://todo-production-cbc3e.up.railway.app)
+**Live demo:** [todoit.up.railway.app](https://todoit.up.railway.app)
+
 
 ---
 
