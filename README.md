@@ -11,27 +11,20 @@
 
 ---
 
-## Screenshots
-
-| Inbox | Task Detail | Landing |
-|-------|-------------|---------|
-| Task list with priority colors, category badges, due dates | Full task detail with meta panel | Landing page with features, testimonials, CTA |
-
----
 
 ## Features
 
 - **Inbox** — all your tasks in one place, sorted and clean
 - **Today view** — only tasks due today
 - **Completed** — track what you've already done
-- **Add / Edit / Delete tasks** — full CRUD with a smooth modal card UI
+- **Add / Edit / Delete tasks** — full CRUDS with a smooth modal card UI
 - **Priority levels** — 4 levels with color coding (red → orange → blue → grey)
 - **Categories** — Personal, Work, Home
-- **Due dates** — date picker with formatted label
+- **Due dates** — date picker
 - **Search** — find tasks by title
-- **Sidebar** — collapsible on desktop (slim 48px bar), overlay on mobile with animation
-- **Authentication** — register, login, logout with per-user data isolation
-- **Flash messages** — success/error alerts with auto-dismiss
+- **Sidebar** — quick access to features (add task, search tasks, inbox, today, completed, logout, and UserProfile).
+- **Authentication** — register, login, logout 
+- **Flash messages** — success/error alerts
 - **Responsive** — works on mobile and desktop
 
 ---
@@ -42,8 +35,7 @@
 |-------|-----------|
 | Backend | Django 6.0 (Python) |
 | Database | PostgreSQL (production) / SQLite (local) |
-| Frontend | Vanilla HTML, CSS, JavaScript |
-| Fonts | DM Sans + DM Serif Display (Google Fonts) |
+| Frontend | Vanilla HTML(DTL), CSS, JavaScript |
 | Deployment | Railway |
 | Static files | WhiteNoise |
 
