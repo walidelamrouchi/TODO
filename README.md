@@ -1,16 +1,15 @@
-# Todoit — Clarity, finally.
+# Todoit
 
 > A clean, focused task management web app built with Django. Capture every task, stay organized, and actually get things done.
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
 ![Django](https://img.shields.io/badge/Django-6.0-green)
-![Deployed](https://img.shields.io/badge/Deployed-Railway-purple)
+![Deployed](https://img.shields.io/badge/Deployed-Railway-purple)    
 
 **Live demo:** [todoit.up.railway.app](https://todoit.up.railway.app)
 
 
 ---
-
 
 ## Features
 
@@ -96,20 +95,18 @@ Auth/                          # Auth app (login, signup)
 
 ### Category
 ```python
-name = IntegerField(choices=[(1, 'Personal'), (2, 'Work'), (3, 'Home')])
+class Category(models.Model):
+    CATEGORY = [(1,'Personal'), (2,'Work'), (3,'Home')]
+    name = models.IntegerField(choices=CATEGORY)
+ 
+    def __str__(self):
+        return self.get_name_display()
 ```
-
 ### Task
 ```python
-title       = CharField(max_length=255)
-description = TextField(blank=True)
-is_done     = BooleanField(default=False)
-priority    = IntegerField(choices=[1..4])
-due_date    = DateTimeField(null=True)
-created_at  = DateTimeField(auto_now_add=True)
-updated_at  = DateTimeField(auto_now=True)
 user        = ForeignKey(User)
 category    = ForeignKey(Category, null=True)
+...
 ```
 
 ---
@@ -118,7 +115,7 @@ category    = ForeignKey(Category, null=True)
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/YOUR_USERNAME/todo.git
+git clone https://github.com/walidelamrouchi/TODO.git
 cd todo
 ```
 
@@ -138,8 +135,8 @@ pip install -r requirements.txt
 ```env
 SECRET_KEY=your-secret-key-here
 DEBUG=True
-ALLOWED_HOSTS=localhost,127.0.0.1
-CSRF_TRUSTED_ORIGINS=http://localhost,http://127.0.0.1
+ALLOWED_HOSTS=localhost
+CSRF_TRUSTED_ORIGINS=http://localhost
 DATABASE_URL=sqlite:///db.sqlite3
 ```
 
@@ -172,14 +169,40 @@ The app is configured to deploy on [Railway](https://railway.app) with PostgreSQ
 |-----|-------|
 | `SECRET_KEY` | your strong secret key |
 | `DEBUG` | `False` |
-| `ALLOWED_HOSTS` | `your-app.up.railway.app` |
-| `CSRF_TRUSTED_ORIGINS` | `https://your-app.up.railway.app` |
+| `ALLOWED_HOSTS` | `todoit.up.railway.app' |
+| `CSRF_TRUSTED_ORIGINS` | `https://todoit.up.railway.app` |
 | `DATABASE_URL` | auto-injected by Railway PostgreSQL plugin |
 
 ### Procfile
+#### Why a Procfile?
+
+Railway (and other platforms like Heroku) need to know **how to start your app**.
+Without a Procfile, the platform doesn't know which command to run.
+
+The Procfile contains one line:
 ```
 web: python manage.py migrate && python manage.py collectstatic --noinput && gunicorn todo.wsgi
 ```
+
+It runs 3 commands in order every time the app deploys:
+
+| Command | Why |
+|---------|-----|
+| `python manage.py migrate` | Apply any new database migrations automatically — no need to run manually on the server |
+| `python manage.py collectstatic --noinput` | Copy all CSS/JS files into one folder so WhiteNoise can serve them |
+| `gunicorn todo.wsgi` | Start the production web server — Django's built-in `runserver` is only for development, never for production |
+
+#### Why Gunicorn and not `runserver`?
+
+Django's `runserver` is:
+- Single-threaded — handles one request at a time
+- Not secure for production
+- Not stable under real traffic
+
+**Gunicorn** is a production-grade server that:
+- Handles multiple requests simultaneously
+- Is stable and battle-tested
+- Is what Railway expects
 
 ---
 
@@ -227,12 +250,22 @@ Usage in templates:
 ## What I Learned
 
 - Django ForeignKey relationships and how `get_FOO_display()` works with integer choice fields
-- Custom template tags and filters
+- ModelForm with custom widgets
+- commit=False pattern
+- login_required decorator
+- Context processor
+- Custom template tags (inheritance, include + with) and filters (icon, color, label)
+- DTL filters (date, default, first, upper)
+- CSRF token
+- Named URLs + {% url %} tag
+- QuerySet filtering, count, iexact
+- HTTP_REFERER redirect
+- Flash messages
+- timezone
+- Environment variables
 - WhiteNoise for static files in production
 - Railway deployment with PostgreSQL and environment variables
 - CSS variables and component-based styling without any framework
-- Intersection Observer API for scroll animations
-- Mobile-first sidebar with CSS transitions
 
 ---
 
@@ -245,12 +278,7 @@ Usage in templates:
 - [ ] Subtasks
 - [ ] Dark mode
 - [ ] REST API + mobile app
-
----
-
-## License
-
-MIT — free to use and modify.
+- [ ] chatbot
 
 ---
 
